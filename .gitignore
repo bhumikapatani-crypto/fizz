@@ -1,0 +1,33 @@
+# Shopify — store-specific settings (causes merge conflicts between teammates)
+config/settings_data.json
+
+# Shopify Theme Kit / Shopify CLI config (contains API keys — never commit)
+config.yml
+.env
+.env.*
+
+# macOS
+.DS_Store
+.AppleDouble
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Python (local dev tools, not part of the theme)
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
