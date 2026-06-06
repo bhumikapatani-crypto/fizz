@@ -1,0 +1,253 @@
+{{ 'fizz-matcha-wholesale.css' | asset_url | stylesheet_tag }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<section
+  class="fmws-section"
+  id="fmws-{{ section.id }}"
+  style="
+    --fmws-bg: {{ section.settings.bg_color }};
+    --fmws-heading-color: {{ section.settings.heading_color }};
+    --fmws-body-color: {{ section.settings.body_color }};
+    --fmws-btn-bg: {{ section.settings.btn_bg_color }};
+    --fmws-btn-hover-bg: {{ section.settings.btn_hover_color }};
+    --fmws-btn-text: {{ section.settings.btn_text_color }};
+    --fmws-bullet-color: {{ section.settings.bullet_color }};
+    --fmws-border-color: {{ section.settings.border_color }};
+  "
+  data-section-id="{{ section.id }}"
+>
+  <div class="fmws-inner">
+
+    {%- comment -%}==== LEFT COLUMN — Heading + Button ===={%- endcomment -%}
+    <div class="fmws-left">
+
+      {%- if section.settings.heading != blank -%}
+        <h2
+          class="fmws-heading"
+          style="font-size: {{ section.settings.heading_size }}px;"
+        >
+          {{ section.settings.heading }}
+        </h2>
+      {%- endif -%}
+
+      {%- if section.settings.btn_label != blank -%}
+        <a
+          href="{{ section.settings.btn_url }}"
+          class="fmws-btn"
+          aria-label="{{ section.settings.btn_label }}"
+        >
+          <span>{{ section.settings.btn_label }}</span>
+          {%- if section.settings.show_arrow -%}
+            <span class="fmws-btn__arrow" aria-hidden="true">
+            <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.9971 0C13.9971 0.847933 14.8521 2.11412 15.7176 3.17689C16.8303 4.54821 18.1601 5.74469 19.6846 6.65776C20.8277 7.34227 22.2134 7.99936 23.3285 7.99936M23.3285 7.99936C22.2134 7.99936 20.8265 8.65645 19.6846 9.34097C18.1601 10.2552 16.8303 11.4517 15.7176 12.8207C14.8521 13.8846 13.9971 15.1531 13.9971 15.9987M23.3285 7.99936H-1.81198e-05" stroke="white" stroke-width="2"/>
+</svg>
+
+            </span>
+          {%- endif -%}
+        </a>
+      {%- endif -%}
+
+    </div>
+
+    {%- comment -%}==== RIGHT COLUMN — Body + Bullets ===={%- endcomment -%}
+    <div class="fmws-right">
+
+      {%- if section.settings.intro_bold != blank or section.settings.body_paragraph_1 != blank or section.settings.body_paragraph_2 != blank -%}
+        <div class="fmws-body" style="font-size: {{ section.settings.body_size }}px;">
+          {%- if section.settings.intro_bold != blank -%}
+            <p class="fmws-body-intro">{{ section.settings.intro_bold }}</p>
+          {%- endif -%}
+          {%- if section.settings.body_paragraph_1 != blank -%}
+            <p>{{ section.settings.body_paragraph_1 }}</p>
+          {%- endif -%}
+          {%- if section.settings.body_paragraph_2 != blank -%}
+            <p>{{ section.settings.body_paragraph_2 }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} 2-column bullet list built from blocks {%- endcomment -%}
+      {%- if section.blocks.size > 0 -%}
+        <ul class="fmws-bullets" style="font-size: {{ section.settings.body_size }}px;">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'bullet_item' -%}
+              <li {{ block.shopify_attributes }}>{{ block.settings.bullet_text }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Fizz Matcha Wholesale",
+  "tag": "section",
+  "class": "fmws-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#F5F4EC"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border line color",
+      "default": "#7B9844"
+    },
+
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Offer Better\nMatcha."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#7B9844"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading font size (px)",
+      "min": 40,
+      "max": 120,
+      "step": 1,
+      "default": 89
+    },
+
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button label",
+      "default": "Request Wholesale Access"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow",
+      "label": "Show arrow",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_color",
+      "label": "Button background",
+      "default": "#7B9844"
+    },
+    {
+      "type": "color",
+      "id": "btn_hover_color",
+      "label": "Button hover background",
+      "default": "#3B5645"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    },
+
+    {
+      "type": "header",
+      "content": "Body Text"
+    },
+    {
+      "type": "text",
+      "id": "intro_bold",
+      "label": "Bold intro line",
+      "default": "A wholesale program for those who value quality and consistency."
+    },
+    {
+      "type": "text",
+      "id": "body_paragraph_1",
+      "label": "Paragraph 1",
+      "default": "We supply premium matcha to select partners who understand the difference."
+    },
+    {
+      "type": "text",
+      "id": "body_paragraph_2",
+      "label": "Paragraph 2",
+      "default": "From wellness studios to retail concepts, we provide matcha that performs in both taste and experience."
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body text color",
+      "default": "#3B5645"
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body font size (px)",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "default": 19
+    },
+
+    {
+      "type": "header",
+      "content": "Bullet Points"
+    },
+    {
+      "type": "color",
+      "id": "bullet_color",
+      "label": "Bullet dot color",
+      "default": "#7B9844"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bullet_item",
+      "name": "Bullet item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "bullet_text",
+          "label": "Bullet text",
+          "default": "Uji-sourced stone-milled matcha"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fizz Matcha Wholesale",
+      "category": "Content",
+      "blocks": [
+        { "type": "bullet_item", "settings": { "bullet_text": "Uji-sourced stone-milled matcha" } },
+        { "type": "bullet_item", "settings": { "bullet_text": "Bulk and retail-ready formats" } },
+        { "type": "bullet_item", "settings": { "bullet_text": "Consistent quality and flavor" } },
+        { "type": "bullet_item", "settings": { "bullet_text": "Ongoing support and guidance" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,134 @@
+{{ 'fizz-matcha-gallery.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign bg_color    = section.settings.bg_color
+  assign gap         = section.settings.gap
+  assign height      = section.settings.height
+-%}
+
+<section
+  class="fmg-section"
+  id="fmg-{{ section.id }}"
+  style="
+    --fmg-bg: {{ bg_color }};
+    --fmg-gap: {{ gap }}px;
+    --fmg-height: {{ height }}px;
+  "
+  data-section-id="{{ section.id }}"
+>
+  <div class="fmg-inner">
+
+    {%- for i in (1..5) -%}
+      {%- assign img_key = 'image_' | append: i -%}
+      {%- assign img_obj = section.settings[img_key] -%}
+      {%- assign img_alt = img_obj.alt | escape -%}
+      <div class="fmg-item">
+        {%- if img_obj != blank -%}
+          {{ img_obj | image_url: width: 800 | image_tag: loading: 'lazy', alt: img_alt }}
+        {%- else -%}
+          <div class="fmg-placeholder">
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Fizz Matcha Gallery",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F5F4EC"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Gallery Height (desktop)",
+      "min": 300,
+      "max": 700,
+      "step": 5,
+      "unit": "px",
+      "default": 515
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap Between Images",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "header",
+      "content": "Image 1 (leftmost)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1",
+      "info": "Recommended: 357 × 513 px"
+    },
+    {
+      "type": "header",
+      "content": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2",
+      "info": "Recommended: 357 × 513 px"
+    },
+    {
+      "type": "header",
+      "content": "Image 3 (center)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3",
+      "info": "Recommended: 357 × 513 px"
+    },
+    {
+      "type": "header",
+      "content": "Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4",
+      "info": "Recommended: 357 × 513 px"
+    },
+    {
+      "type": "header",
+      "content": "Image 5 (rightmost)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image 5",
+      "info": "Recommended: 357 × 513 px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fizz Matcha Gallery"
+    }
+  ]
+}
+{% endschema %}

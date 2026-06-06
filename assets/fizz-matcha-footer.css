@@ -1,0 +1,293 @@
+/* ============================================================
+   Fizz & Matcha — Footer Section
+   Figma node 815:99  |  1920 × 757 px
+   BG #042611  |  Padding 91px (4.7%) each side
+   Cols: Brand 35.9% | Quick Links 26.1% | Help 26.4% | Social 11.6%
+   Font: Inter 300/700, 18px, uppercase, white, line-height 25px
+   ============================================================ */
+
+.fmft-section *,
+.fmft-section *::before,
+.fmft-section *::after { box-sizing: border-box; }
+
+/* ---- Outer section ---- */
+.fmft-section {
+  background-color: var(--fmft-bg, #042611);
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ---- Inner container — 4-col flex row ---- */
+.fmft-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  padding: 80px 4.7% 80px 4.7%;   /* 91/1920 = 4.74% */
+  gap: 0;
+  width: 100%;
+}
+
+/* ============================================================
+   COL 1 — Brand: 35.9% of content width
+   ============================================================ */
+.fmft-brand {
+  flex: 0 0 35.9%;
+  padding-right: 4%;
+}
+
+/* Logo image */
+.fmft-logo-link {
+  display: inline-block;
+  text-decoration: none;
+  margin-bottom: 51px;   /* Figma: 51px gap from logo bottom to body text */
+}
+
+.fmft-logo {
+  display: block;
+  width: auto;
+  max-width: 320px;
+  height: auto;
+}
+
+/* Fallback text logo (when no image uploaded) */
+.fmft-logo-fallback {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fmft-logo-name {
+  font-family: 'Lilita One', cursive;
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--fmft-text, #FFFFFF);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.fmft-logo-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--fmft-text, #FFFFFF);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  line-height: 1;
+}
+
+/* Body text */
+.fmft-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--fmft-text, #FFFFFF);
+  text-transform: uppercase;
+  line-height: 25px;
+  letter-spacing: 0;
+  margin: 0;
+  max-width: 389px;
+}
+
+/* ============================================================
+   COL 2 & 3 — Link columns: 26.1% and 26.4%
+   ============================================================ */
+.fmft-col {
+  flex: 0 0 26%;
+  padding-right: 2%;
+}
+
+/* Column headings: Inter Bold, 18px */
+.fmft-col-heading {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--fmft-text, #FFFFFF);
+  text-transform: uppercase;
+  line-height: 25px;
+  letter-spacing: 0;
+  margin: 0 0 12px;
+  text-decoration: none;
+  padding-bottom: 0;
+}
+
+.fmft-col-heading-divider {
+  margin-bottom: 20px;
+  line-height: 0;
+  font-size: 0;
+}
+
+.fmft-col-heading-divider svg {
+  display: block;
+  width: 30%;
+  height: auto;
+}
+
+/* Links list */
+.fmft-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;   /* 34px row height - 25px line-height = 9px gap */
+}
+
+.fmft-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--fmft-text, #FFFFFF);
+  text-transform: uppercase;
+  line-height: 25px;
+  letter-spacing: 0;
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.2s ease;
+}
+
+.fmft-link:hover {
+  color: var(--fmft-link-hover, #7B9844);
+}
+
+/* ============================================================
+   COL 4 — Social icons: right-aligned, aligned to bottom
+   ============================================================ */
+.fmft-social-col {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;    /* push icons to bottom of the column */
+  justify-content: flex-end;
+  padding-bottom: 0;
+}
+
+/* Social icon row */
+.fmft-social {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;   /* Figma: (202 - 4×40) / 3 = 14px between 4 icons */
+}
+
+/* Individual circular icon button: 40×40px, 1px white border */
+.fmft-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--fmft-text, #FFFFFF);
+  color: var(--fmft-text, #FFFFFF);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.fmft-social-btn:hover {
+  background-color: var(--fmft-link-hover, #7B9844);
+  border-color: var(--fmft-link-hover, #7B9844);
+  color: #FFFFFF;
+}
+
+.fmft-social-btn svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   COPYRIGHT BAR
+   ============================================================ */
+.fmft-copyright {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 24px 4.7%;
+}
+
+.fmft-copyright p {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-align: center;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* 1200–1499 px */
+@media (max-width: 1499px) {
+  .fmft-inner { padding: 72px 5% 72px 5%; }
+  .fmft-brand { flex: 0 0 34%; }
+  .fmft-col { flex: 0 0 25%; }
+  .fmft-body { font-size: 16px; }
+  .fmft-link, .fmft-col-heading { font-size: 16px; }
+}
+
+/* 1024–1199 px */
+@media (max-width: 1199px) {
+  .fmft-inner { padding: 64px 4% 64px 4%; gap: 0; }
+  .fmft-brand { flex: 0 0 32%; padding-right: 3%; }
+  .fmft-col { flex: 0 0 24%; padding-right: 1.5%; }
+  .fmft-col-heading { font-size: 15px; margin-bottom: 32px; }
+  .fmft-link { font-size: 15px; }
+  .fmft-body { font-size: 15px; }
+  .fmft-logo-link { margin-bottom: 36px; }
+}
+
+/* Tablet ≤ 899px — 2-col grid */
+@media (max-width: 899px) {
+  .fmft-inner {
+    flex-wrap: wrap;
+    padding: 60px 5% 48px 5%;
+    gap: 48px 5%;
+  }
+  .fmft-brand {
+    flex: 0 0 100%;
+    padding-right: 0;
+  }
+  .fmft-col {
+    flex: 0 0 calc(50% - 2.5%);
+    padding-right: 0;
+  }
+  .fmft-social-col {
+    flex: 0 0 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 8px;
+  }
+  .fmft-col-heading { font-size: 16px; margin-bottom: 28px; }
+  .fmft-link { font-size: 16px; }
+  .fmft-body { font-size: 16px; max-width: 100%; }
+  .fmft-logo-link { margin-bottom: 32px; }
+}
+
+/* Mobile ≤ 599px — single column */
+@media (max-width: 599px) {
+  .fmft-inner {
+    flex-direction: column;
+    padding: 48px 5% 40px 5%;
+    gap: 40px;
+  }
+  .fmft-brand,
+  .fmft-col,
+  .fmft-social-col {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+  .fmft-col-heading { font-size: 16px; margin-bottom: 24px; }
+  .fmft-link { font-size: 16px; }
+  .fmft-body { font-size: 16px; }
+  .fmft-logo-link { margin-bottom: 28px; }
+  .fmft-logo { max-width: 240px; }
+  .fmft-copyright { padding: 20px 5%; }
+}
+
+/* Small mobile ≤ 399px */
+@media (max-width: 399px) {
+  .fmft-inner { padding: 40px 5% 32px 5%; gap: 32px; }
+  .fmft-social { flex-wrap: wrap; gap: 12px; }
+}

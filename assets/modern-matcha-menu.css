@@ -1,0 +1,542 @@
+/* ============================================================
+   Modern Matcha Menu Section
+   Figma: Fizz & Matcha — Group 320 / node 410:14
+   Section: 1920×572px dark green, 3-column layout
+   ============================================================ */
+
+.mmm-wrapper *,
+.mmm-wrapper *::before,
+.mmm-wrapper *::after {
+  box-sizing: border-box;
+}
+
+/* ---- Top accent bar ---- */
+.mmm-top-bar {
+  width: 100%;
+  display: block;
+}
+
+/* ---- Outer shell — isolation + overflow stops images leaking into header ---- */
+.mmm-section {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+}
+
+/* ---- Inner flex row ---- */
+.mmm-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding-top: var(--mmm-pt, 80px);
+  padding-bottom: var(--mmm-pb, 100px);
+  position: relative;
+  min-height: 540px;
+  overflow: hidden; /* clips bottles that overflow their column */
+}
+
+/* ============================================================
+   COLUMN 1 — Text content (~48% width)
+   Figma: text starts at 195px from left, col ~540px wide
+   ============================================================ */
+.mmm-col--text {
+  flex: 0 0 48%;
+  width: 48%;
+  padding-left: 8%;
+  padding-right: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Eyebrow — Inter 700 24px white */
+.mmm-eyebrow {
+  margin: 0 0 10px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+/* Heading — Lilita One 89px #7b9844 lh 0.89 */
+.mmm-heading {
+  margin: 0 0 20px;
+  font-weight: 400;
+  line-height: 0.9;
+  word-break: break-word;
+}
+
+/* Body — Inter 400 19px white lh 31px */
+.mmm-body {
+  margin: 0 0 28px;
+  line-height: 1.65;
+  max-width: 420px;
+}
+
+.mmm-body p {
+  margin: 0 0 12px;
+}
+
+.mmm-body p:last-child {
+  margin-bottom: 0;
+}
+
+.mmm-body strong {
+  font-weight: 700;
+}
+
+/* CTA button — outlined square */
+.mmm-btn-wrap {
+  margin-top: 4px;
+}
+
+.mmm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 24px;
+  border: 1.5px solid currentColor;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.22s ease, color 0.22s ease;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.mmm-btn__arrow {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.22s ease;
+}
+
+.mmm-btn:hover .mmm-btn__arrow {
+  transform: translateX(4px);
+}
+
+/* ============================================================
+   COLUMN 2 — Top Picks (~22% width)
+   ============================================================ */
+.mmm-col--picks {
+  flex: 0 0 22%;
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* "Top Pick" bold label */
+.mmm-picks-label {
+  margin: 0 0 12px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Product list */
+.mmm-picks-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mmm-picks-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+
+/* SVG divider mode — remove CSS borders */
+.mmm-picks-list--svg-divider .mmm-picks-item,
+.mmm-picks-list--svg-divider .mmm-picks-item:first-child {
+  border: none;
+}
+
+.mmm-picks-divider-item {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  font-size: 0;
+}
+
+.mmm-picks-divider-item svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Each product name link */
+.mmm-picks-link {
+  display: block;
+  padding: 14px 0;
+  font-weight: 400;
+  line-height: 1.3;
+  text-decoration: none;
+  transition: opacity 0.18s ease;
+}
+
+.mmm-picks-link:hover {
+  opacity: 0.72;
+}
+
+/* ============================================================
+   COLUMN 3 — Images (~30% width)
+   Desktop only: bottles are absolutely positioned for staggered depth
+   ============================================================ */
+.mmm-col--images {
+  flex: 0 0 30%;
+  width: 30%;
+  position: relative;
+  overflow: visible;
+}
+
+/* ---- Sticker (Go drink Matcha) ---- */
+.mmm-sticker {
+  position: absolute;
+  z-index: 4;
+}
+
+.mmm-sticker__img {
+  width: 160px;
+  height: auto;
+  display: block;
+}
+
+/* ---- Bottle base styles (desktop absolute layout) ---- */
+.mmm-bottle {
+  position: absolute;
+  z-index: 2;
+}
+
+.mmm-bottle--1 {
+  left: var(--mmm-b1-left, 2%);
+  top: var(--mmm-b1-top, 8%);
+  z-index: 3;
+  width: var(--mmm-b1-width, 200px);
+}
+
+.mmm-bottle--2 {
+  left: var(--mmm-b2-left, 32%);
+  top: var(--mmm-b2-top, 22%);
+  z-index: 2;
+  width: var(--mmm-b2-width, 200px);
+}
+
+.mmm-bottle--3 {
+  left: var(--mmm-b3-left, 62%);
+  top: var(--mmm-b3-top, 12%);
+  z-index: 3;
+  width: 170px;
+}
+
+.mmm-bottle__img {
+  width: var(--mmm-b1-width, 200px);
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.mmm-bottle--2 .mmm-bottle__img {
+  width: var(--mmm-b2-width, 200px);
+}
+
+.mmm-bottle--3 .mmm-bottle__img {
+  width: var(--mmm-b3-width, 200px);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+
+/* ---- 1100px: compress 3 columns ---- */
+@media (max-width: 1100px) {
+  .mmm-inner {
+    min-height: 480px;
+  }
+
+  .mmm-col--text {
+    flex: 0 0 44%;
+    width: 44%;
+    padding-left: 48px;
+    padding-right: 24px;
+  }
+
+  .mmm-col--picks {
+    flex: 0 0 24%;
+    width: 24%;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .mmm-col--images {
+    flex: 0 0 32%;
+    width: 32%;
+  }
+
+  .mmm-heading {
+    font-size: clamp(44px, 5.5vw, 80px) !important;
+  }
+
+  .mmm-sticker__img {
+    width: 120px;
+  }
+}
+
+/* ---- 900px: 2-row layout — text+picks row, then images full width ---- */
+@media (max-width: 900px) {
+  .mmm-inner {
+    flex-wrap: wrap;
+    min-height: unset;
+    padding-top: 60px;
+    padding-bottom: 0;
+  }
+
+  .mmm-col--text {
+    flex: 0 0 55%;
+    width: 55%;
+    padding-left: 40px;
+    padding-right: 20px;
+  }
+
+  .mmm-col--picks {
+    flex: 0 0 45%;
+    width: 45%;
+    padding-left: 12px;
+    padding-right: 36px;
+    justify-content: flex-start;
+    padding-top: 40px;
+  }
+
+  /* Images: full width strip, flex row of bottles side by side */
+  .mmm-col--images {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  /* Switch bottles from absolute → static inside flex row */
+  .mmm-bottle {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  .mmm-bottle--1,
+  .mmm-bottle--2,
+  .mmm-bottle--3 {
+    left: auto;
+    top: auto;
+    width: auto;
+  }
+
+  .mmm-bottle__img,
+  .mmm-bottle--2 .mmm-bottle__img,
+  .mmm-bottle--3 .mmm-bottle__img {
+    width: auto;
+    height: 280px;
+    max-width: 160px;
+    object-fit: contain;
+    object-position: bottom;
+  }
+
+  /* Sticker repositioned to top-right of images strip */
+  .mmm-sticker {
+    top: 8px;
+    right: 16px;
+    left: auto;
+  }
+
+  .mmm-sticker__img {
+    width: 100px;
+  }
+
+  .mmm-heading {
+    font-size: clamp(40px, 6vw, 70px) !important;
+    line-height: 0.92 !important;
+  }
+}
+
+/* ---- 767px: tablet portrait → tighten text+picks row ---- */
+@media (max-width: 767px) {
+  .mmm-inner {
+    padding-top: 52px;
+    padding-bottom: 0;
+  }
+
+  .mmm-col--text {
+    flex: 0 0 100%;
+    width: 100%;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .mmm-col--picks {
+    flex: 0 0 100%;
+    width: 100%;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 32px;
+    padding-bottom: 0;
+    justify-content: flex-start;
+  }
+
+  /* Images: horizontal touch-scroll strip */
+  .mmm-col--images {
+    flex: 0 0 100%;
+    width: 100%;
+    height: auto;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 12px;
+    padding: 24px 32px 32px; /* match text/picks left padding of 32px */
+    margin-top: 24px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .mmm-bottle {
+    position: relative;
+    left: auto;
+    top: auto;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  .mmm-bottle--1,
+  .mmm-bottle--2,
+  .mmm-bottle--3 {
+    left: auto;
+    top: auto;
+    width: auto;
+  }
+
+  .mmm-bottle__img,
+  .mmm-bottle--2 .mmm-bottle__img,
+  .mmm-bottle--3 .mmm-bottle__img {
+    height: 240px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    object-position: bottom;
+  }
+
+  /* Sticker inside scroll area */
+  .mmm-sticker {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    order: -1;
+    align-self: flex-start;
+    padding-top: 0;
+  }
+
+  .mmm-sticker__img {
+    width: 90px;
+  }
+
+  .mmm-heading {
+    font-size: clamp(38px, 8vw, 60px) !important;
+    line-height: 0.92 !important;
+  }
+
+  .mmm-body {
+    font-size: 15px !important;
+    max-width: 100%;
+  }
+
+  .mmm-btn {
+    font-size: 13px;
+    padding: 12px 20px;
+  }
+}
+
+/* ---- 480px: small mobile ---- */
+@media (max-width: 480px) {
+  .mmm-inner {
+    padding-top: 40px;
+    padding-bottom: 0;
+  }
+
+  .mmm-col--text,
+  .mmm-col--picks {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .mmm-col--images {
+    height: auto;
+    gap: 8px;
+    padding: 20px 20px 28px 20px; /* match text/picks left padding of 20px */
+  }
+
+  .mmm-bottle__img,
+  .mmm-bottle--2 .mmm-bottle__img,
+  .mmm-bottle--3 .mmm-bottle__img {
+    height: 200px;
+    max-width: 100px;
+  }
+
+  .mmm-sticker__img {
+    width: 72px;
+  }
+
+  .mmm-heading {
+    font-size: clamp(34px, 9vw, 52px) !important;
+  }
+
+  .mmm-eyebrow {
+    font-size: 14px !important;
+  }
+
+  .mmm-picks-link {
+    font-size: 16px !important;
+    padding: 12px 0;
+  }
+}
+
+/* ---- 360px: very small phones ---- */
+@media (max-width: 360px) {
+  .mmm-col--text,
+  .mmm-col--picks {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mmm-col--images {
+    height: 190px;
+  }
+
+  .mmm-bottle__img,
+  .mmm-bottle--2 .mmm-bottle__img,
+  .mmm-bottle--3 .mmm-bottle__img {
+    height: 170px;
+    max-width: 88px;
+  }
+
+  .mmm-heading {
+    font-size: clamp(30px, 9.5vw, 46px) !important;
+  }
+}

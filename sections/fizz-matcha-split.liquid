@@ -1,0 +1,168 @@
+{{ 'fizz-matcha-split.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign bg_color      = section.settings.bg_color
+  assign heading_color = section.settings.heading_color
+  assign body_color    = section.settings.body_color
+  assign border_color  = section.settings.border_color
+  assign img_width     = section.settings.image_width
+  assign heading_size  = section.settings.heading_size
+  assign body_size     = section.settings.body_size
+-%}
+
+<section
+  class="fms-section"
+  id="fms-{{ section.id }}"
+  style="
+    --fms-bg: {{ bg_color }};
+    --fms-img-pct: {{ img_width }}%;
+    --fms-h-color: {{ heading_color }};
+    --fms-h-size: {{ heading_size }}px;
+    --fms-b-color: {{ body_color }};
+    --fms-b-size: {{ body_size }}px;
+    --fms-border-color: {{ border_color }};
+  "
+  data-section-id="{{ section.id }}"
+>
+  <div class="fms-inner">
+
+    {%- comment -%}===== IMAGE PANEL (left ~52 %) ====={%- endcomment -%}
+    <div class="fms-img-panel">
+      {%- if section.settings.section_image != blank -%}
+        {{ section.settings.section_image
+          | image_url: width: 1400
+          | image_tag:
+            loading: 'lazy',
+            class: 'fms-img',
+            alt: section.settings.section_image.alt | escape }}
+      {%- else -%}
+        <div class="fms-img-placeholder">
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%}===== CONTENT PANEL (right ~48 %) ====={%- endcomment -%}
+    <div class="fms-content-panel">
+      <div class="fms-content">
+
+        {%- if section.settings.heading != blank -%}
+          <h2 class="fms-heading">
+            {{- section.settings.heading | newline_to_br -}}
+          </h2>
+        {%- endif -%}
+
+        {%- if section.settings.body_text != blank -%}
+          <p class="fms-body">{{ section.settings.body_text }}</p>
+        {%- endif -%}
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Fizz Matcha Split",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F5F4EC"
+    },
+    {
+      "type": "header",
+      "content": "Image Panel"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_image",
+      "label": "Image",
+      "info": "Recommended: 1009 × 645 px"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "Image Panel Width",
+      "min": 30,
+      "max": 70,
+      "step": 1,
+      "unit": "%",
+      "default": 53
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading (Enter for line break)",
+      "default": "Matcha.\nPero Make It Fizz."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#7B9844"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 40,
+      "max": 120,
+      "step": 1,
+      "unit": "px",
+      "default": 89
+    },
+    {
+      "type": "header",
+      "content": "Body Text"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body Text",
+      "default": "Fizz & Matcha Co. is built around a modern approach to matcha—clean ingredients, refined presentation, and a lighter sparkling experience.\nFrom smooth lattes to crisp fizzy matcha, every drink is designed to feel balanced, refreshing, and easy to come back to."
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body Text Color",
+      "default": "#3B5645"
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body Font Size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    },
+    {
+      "type": "header",
+      "content": "Bottom Border"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#7B9844"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fizz Matcha Split"
+    }
+  ]
+}
+{% endschema %}

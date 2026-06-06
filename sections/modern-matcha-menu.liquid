@@ -1,0 +1,583 @@
+{{ 'modern-matcha-menu.css' | asset_url | stylesheet_tag }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<section
+  class="mmm-section"
+  id="mmm-{{ section.id }}"
+  style="background-color:{{ section.settings.bg_color }};--mmm-pt:{{ section.settings.section_padding_top }}px;--mmm-pb:{{ section.settings.section_padding_bottom }}px;"
+  data-section-id="{{ section.id }}"
+>
+  {%- if section.settings.show_top_bar -%}
+    <div class="mmm-top-bar" style="background-color:{{ section.settings.top_bar_color }};height:{{ section.settings.top_bar_height }}px;"></div>
+  {%- endif -%}
+
+  <div class="mmm-inner">
+
+    {%- comment -%}==== COLUMN 1 — TEXT ===={%- endcomment -%}
+    <div class="mmm-col mmm-col--text">
+
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="mmm-eyebrow" style="color:{{ section.settings.eyebrow_color }};font-size:{{ section.settings.eyebrow_size }}px;">
+          {{ section.settings.eyebrow }}
+        </p>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="mmm-heading" style="color:{{ section.settings.heading_color }};font-size:{{ section.settings.heading_size }}px;">
+          {{ section.settings.heading }}
+        </h2>
+      {%- endif -%}
+
+      {%- if section.settings.body_text != blank -%}
+        <div class="mmm-body" style="color:{{ section.settings.body_color }};font-size:{{ section.settings.body_size }}px;">
+          {{ section.settings.body_text }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <div class="mmm-btn-wrap">
+          <a
+            href="{{ section.settings.button_url }}"
+            class="mmm-btn"
+            style="color:{{ section.settings.button_color }};border-color:{{ section.settings.button_color }};--mmm-btn-hover-bg:{{ section.settings.button_color }};--mmm-btn-hover-text:{{ section.settings.bg_color }};"
+          >
+            <span>{{ section.settings.button_label }}</span>
+            {%- if section.settings.button_arrow -%}
+              <span class="mmm-btn__arrow" aria-hidden="true">
+              <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.9971 0C13.9971 0.847933 14.8521 2.11412 15.7176 3.17689C16.8303 4.54821 18.1601 5.74469 19.6846 6.65776C20.8277 7.34227 22.2134 7.99936 23.3285 7.99936M23.3285 7.99936C22.2134 7.99936 20.8265 8.65645 19.6846 9.34097C18.1601 10.2552 16.8303 11.4517 15.7176 12.8207C14.8521 13.8846 13.9971 15.1531 13.9971 15.9987M23.3285 7.99936H-1.81198e-05" stroke="#7B9844" stroke-width="2"/>
+</svg>
+
+              </span>
+            {%- endif -%}
+          </a>
+        </div>
+      {%- endif -%}
+
+    </div>
+
+    {%- comment -%}==== COLUMN 2 — PRODUCT LIST ===={%- endcomment -%}
+    <div class="mmm-col mmm-col--picks">
+
+      {%- if section.settings.picks_label != blank -%}
+        <p class="mmm-picks-label" style="color:{{ section.settings.picks_label_color }};font-size:{{ section.settings.picks_label_size }}px;">
+          {{ section.settings.picks_label }}
+        </p>
+      {%- endif -%}
+
+      <ul class="mmm-picks-list{% if section.settings.divider_svg != blank %} mmm-picks-list--svg-divider{% endif %}">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'product_pick' -%}
+            <li class="mmm-picks-item" {{ block.shopify_attributes }}>
+              <a
+                href="{{ block.settings.pick_url }}"
+                class="mmm-picks-link"
+                style="color:{{ section.settings.picks_color }};font-size:{{ section.settings.picks_size }}px;"
+              >
+                {{ block.settings.pick_name }}
+              </a>
+            </li>
+            {%- if section.settings.divider_svg != blank -%}
+              <li class="mmm-picks-divider-item" aria-hidden="true">{{ section.settings.divider_svg }}</li>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+
+    </div>
+
+    {%- comment -%}==== COLUMN 3 — IMAGES ===={%- endcomment -%}
+    <div class="mmm-col mmm-col--images">
+
+      {%- comment -%} "Go drink Matcha" sticker — top right {%- endcomment -%}
+      {%- if section.settings.sticker_image != blank -%}
+        <div class="mmm-sticker" style="top:{{ section.settings.sticker_top }}%;right:{{ section.settings.sticker_right }}%;">
+          <img
+            src="{{ section.settings.sticker_image | image_url: width: 300 }}"
+            alt="{{ section.settings.sticker_alt | escape }}"
+            width="160"
+            loading="lazy"
+            class="mmm-sticker__img"
+          >
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Bottle 1 (left) {%- endcomment -%}
+      {%- if section.settings.bottle_1 != blank -%}
+        <div
+          class="mmm-bottle mmm-bottle--1"
+          style="--mmm-b1-left:{{ section.settings.bottle1_left }}%;--mmm-b1-top:{{ section.settings.bottle1_top }}%;--mmm-b1-width:{{ section.settings.bottle_width }}px;"
+        >
+          <img
+            src="{{ section.settings.bottle_1 | image_url: width: 600 }}"
+            alt="{{ section.settings.bottle_1_alt | default: section.settings.heading | escape }}"
+            loading="lazy"
+            class="mmm-bottle__img"
+          >
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Bottle 2 (middle) {%- endcomment -%}
+      {%- if section.settings.bottle_2 != blank -%}
+        <div
+          class="mmm-bottle mmm-bottle--2"
+          style="--mmm-b2-left:{{ section.settings.bottle2_left }}%;--mmm-b2-top:{{ section.settings.bottle2_top }}%;--mmm-b2-width:{{ section.settings.bottle_width }}px;"
+        >
+          <img
+            src="{{ section.settings.bottle_2 | image_url: width: 600 }}"
+            alt="{{ section.settings.bottle_2_alt | default: section.settings.heading | escape }}"
+            loading="lazy"
+            class="mmm-bottle__img"
+          >
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Bottle 3 (right) {%- endcomment -%}
+      {%- if section.settings.bottle_3 != blank -%}
+        <div
+          class="mmm-bottle mmm-bottle--3"
+          style="--mmm-b3-left:{{ section.settings.bottle3_left }}%;--mmm-b3-top:{{ section.settings.bottle3_top }}%;--mmm-b3-width:{{ section.settings.bottle_width }}px;"
+        >
+          <img
+            src="{{ section.settings.bottle_3 | image_url: width: 600 }}"
+            alt="{{ section.settings.bottle_3_alt | default: section.settings.heading | escape }}"
+            loading="lazy"
+            class="mmm-bottle__img"
+          >
+        </div>
+      {%- endif -%}
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #mmm-{{ section.id }} .mmm-heading,
+  #mmm-{{ section.id }} .mmm-picks-label {
+    font-family: 'Lilita One', {{ section.settings.heading_font_fallback }};
+  }
+  #mmm-{{ section.id }} .mmm-eyebrow,
+  #mmm-{{ section.id }} .mmm-body,
+  #mmm-{{ section.id }} .mmm-btn,
+  #mmm-{{ section.id }} .mmm-picks-link {
+    font-family: 'Inter', {{ section.settings.body_font_fallback }};
+  }
+  #mmm-{{ section.id }} .mmm-body {
+    font-weight: 400;
+  }
+  #mmm-{{ section.id }} .mmm-btn:hover {
+    background-color: var(--mmm-btn-hover-bg) !important;
+    color: var(--mmm-btn-hover-text) !important;
+  }
+  .mmm-body p{
+    color:white;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Modern Matcha Menu",
+  "tag": "section",
+  "class": "mmm-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#042611"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Padding top (px)",
+      "min": 20,
+      "max": 160,
+      "step": 4,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Padding bottom (px)",
+      "min": 20,
+      "max": 160,
+      "step": 4,
+      "default": 80
+    },
+
+    {
+      "type": "header",
+      "content": "Top Accent Bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_top_bar",
+      "label": "Show top accent bar",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "top_bar_height",
+      "label": "Bar height (px)",
+      "min": 1,
+      "max": 16,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "color",
+      "id": "top_bar_color",
+      "label": "Accent bar color",
+      "default": "#7b9844"
+    },
+
+    {
+      "type": "header",
+      "content": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Clean. Simple. Done right."
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow font size (px)",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "default": 18
+    },
+
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Modern Matcha."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#7b9844"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading font size (px)",
+      "min": 32,
+      "max": 120,
+      "step": 1,
+      "default": 80
+    },
+    {
+      "type": "select",
+      "id": "heading_font_fallback",
+      "label": "Heading fallback font",
+      "options": [
+        { "value": "serif",      "label": "Serif" },
+        { "value": "sans-serif", "label": "Sans-serif" }
+      ],
+      "default": "sans-serif"
+    },
+
+    {
+      "type": "header",
+      "content": "Body Text"
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body text",
+      "default": "<p>Our menu is built around matcha—nothing extra, nothing forced. Just smooth lattes and a sparkling take that hits different.</p><p>Balanced, refreshing, and designed for everyday enjoyment.</p><p><strong>Fizzy Matcha</strong> — light, crisp, refreshing<br><strong>Matcha Lattes</strong> — smooth, clean, classic</p>"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body font size (px)",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "body_font_fallback",
+      "label": "Body fallback font",
+      "options": [
+        { "value": "serif",      "label": "Serif" },
+        { "value": "sans-serif", "label": "Sans-serif" }
+      ],
+      "default": "sans-serif"
+    },
+
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "VIEW FULL MENU"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_arrow",
+      "label": "Show arrow",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button border & text color",
+      "default": "#7b9844"
+    },
+
+    {
+      "type": "header",
+      "content": "Top Picks Column"
+    },
+    {
+      "type": "text",
+      "id": "picks_label",
+      "label": "Column label",
+      "default": "Top Pick"
+    },
+    {
+      "type": "color",
+      "id": "picks_label_color",
+      "label": "Label color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "picks_label_size",
+      "label": "Label font size (px)",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "picks_color",
+      "label": "Pick item text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "picks_size",
+      "label": "Pick item font size (px)",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "default": 22
+    },
+    {
+      "type": "color",
+      "id": "picks_divider_color",
+      "label": "Divider line color (fallback when no image)",
+      "default": "rgba(255,255,255,0.3)"
+    },
+    {
+      "type": "html",
+      "id": "divider_svg",
+      "label": "Divider SVG (replaces border line)",
+      "info": "Paste your <svg>...</svg> code here. Leave empty to use the border line above."
+    },
+
+    {
+      "type": "header",
+      "content": "Images — Sticker"
+    },
+    {
+      "type": "image_picker",
+      "id": "sticker_image",
+      "label": "Sticker image (e.g. Go drink Matcha)"
+    },
+    {
+      "type": "text",
+      "id": "sticker_alt",
+      "label": "Sticker alt text",
+      "default": "Go drink Matcha"
+    },
+    {
+      "type": "range",
+      "id": "sticker_top",
+      "label": "Sticker top position (%)",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "sticker_right",
+      "label": "Sticker right position (%)",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "default": 2
+    },
+
+    {
+      "type": "header",
+      "content": "Images — Bottles"
+    },
+    {
+      "type": "range",
+      "id": "bottle_width",
+      "label": "Bottle image width (px)",
+      "min": 100,
+      "max": 400,
+      "step": 5,
+      "default": 200
+    },
+    {
+      "type": "image_picker",
+      "id": "bottle_1",
+      "label": "Bottle 1 (left)"
+    },
+    {
+      "type": "text",
+      "id": "bottle_1_alt",
+      "label": "Bottle 1 alt text"
+    },
+    {
+      "type": "range",
+      "id": "bottle1_left",
+      "label": "Bottle 1 left position (%)",
+      "min": 0,
+      "max": 90,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "bottle1_top",
+      "label": "Bottle 1 top position (%)",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "image_picker",
+      "id": "bottle_2",
+      "label": "Bottle 2 (middle)"
+    },
+    {
+      "type": "text",
+      "id": "bottle_2_alt",
+      "label": "Bottle 2 alt text"
+    },
+    {
+      "type": "range",
+      "id": "bottle2_left",
+      "label": "Bottle 2 left position (%)",
+      "min": 0,
+      "max": 90,
+      "step": 1,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "bottle2_top",
+      "label": "Bottle 2 top position (%)",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "default": 22
+    },
+    {
+      "type": "image_picker",
+      "id": "bottle_3",
+      "label": "Bottle 3 (right)"
+    },
+    {
+      "type": "text",
+      "id": "bottle_3_alt",
+      "label": "Bottle 3 alt text"
+    },
+    {
+      "type": "range",
+      "id": "bottle3_left",
+      "label": "Bottle 3 left position (%)",
+      "min": 0,
+      "max": 90,
+      "step": 1,
+      "default": 62
+    },
+    {
+      "type": "range",
+      "id": "bottle3_top",
+      "label": "Bottle 3 top position (%)",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_pick",
+      "name": "Product pick",
+      "settings": [
+        {
+          "type": "text",
+          "id": "pick_name",
+          "label": "Product name",
+          "default": "Crème Brûlée"
+        },
+        {
+          "type": "url",
+          "id": "pick_url",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Modern Matcha Menu",
+      "category": "Featured",
+      "blocks": [
+        { "type": "product_pick", "settings": { "pick_name": "Crème Brûlée" } },
+        { "type": "product_pick", "settings": { "pick_name": "Ube Matcha Latte" } },
+        { "type": "product_pick", "settings": { "pick_name": "Strawberry Matcha Latte" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

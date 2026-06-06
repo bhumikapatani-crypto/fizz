@@ -1,0 +1,324 @@
+/* ============================================================
+   Fizz & Matcha — Find Us Section
+   Figma node 742:415  |  Design canvas: 1920 × 644 px
+   BG #F5F4EC | Left content 581 px | Right content 1116 px
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+.fmfu-section *,
+.fmfu-section *::before,
+.fmfu-section *::after {
+  box-sizing: border-box;
+}
+
+/* ---- Section wrapper ---- */
+.fmfu-section {
+  background-color: var(--fmfu-bg, #F5F4EC);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  min-height: 644px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 82px 0 81px;
+  position: relative;
+}
+
+/* Bottom divider line (Figma Vector 34) */
+.fmfu-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--fmfu-border-color, #7B9844);
+  z-index: 2;
+}
+
+/* ---- Inner container: fluid full-bleed, matches other sections ---- */
+.fmfu-inner {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 8%;
+  padding-right: 0;
+  gap: clamp(40px, 4vw, 80px);
+}
+
+/* ============================================================
+   LEFT COLUMN — Content
+   ============================================================ */
+.fmfu-content {
+  flex: 0 0 581px;
+  max-width: 581px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Heading: Lilita One, 89px, line-height 79px, #7B9844 */
+.fmfu-heading {
+  font-family: 'Lilita One', cursive;
+  font-size: var(--fmfu-heading-size, 89px);
+  font-weight: 400;
+  line-height: 0.888; /* 79/89 ratio */
+  color: var(--fmfu-heading-color, #7B9844);
+  margin: 0 0 53px; /* Figma gap to body: 53px */
+  text-transform: capitalize;
+  word-break: break-word;
+}
+
+/* Body container: Inter 19px, line-height 31px, #3B5645 */
+.fmfu-body {
+  width: 100%;
+  color: var(--fmfu-body-color, #3B5645);
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fmfu-body-size, 19px);
+  font-weight: 400;
+  line-height: 1.63; /* 31/19 ratio */
+  margin: 0 0 26px; /* Figma gap to button: 26px */
+}
+
+/* Bold Intro Paragraph */
+.fmfu-body-intro {
+  font-weight: 700;
+  margin: 0 0 16px; /* Figma override: paragraphSpacing 16px */
+}
+
+/* Regular Description Paragraphs */
+.fmfu-body-text {
+  margin: 0 0 16px;
+  color:#3B5645; 
+}
+.fmfu-body-intro{
+  color:#3B5645; 
+
+}
+
+/* Bullet list styling */
+.fmfu-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* default list item vertical spacing */
+}
+
+.fmfu-list li {
+  position: relative;
+  padding-left: 24px;
+  line-height: 1.5;
+}
+
+/* Custom green bullet dots */
+.fmfu-list li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--fmfu-bullet-color, #7B9844);
+}
+
+/* ============================================================
+   BUTTON — 260 × 49 px, square corners, white uppercase + arrow
+   ============================================================ */
+.fmfu-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--fmfu-btn-bg, #7B9844);
+  color: var(--fmfu-btn-text-color, #FFFFFF);
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fmfu-btn-size, 19px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  padding: 0 15px;
+  width: 270px;
+  height: 49px;
+  justify-content: space-between;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.fmfu-btn:hover {
+  background-color: var(--fmfu-btn-hover-bg, #3B5645);
+}
+
+.fmfu-btn__arrow {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.fmfu-btn__arrow svg {
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.fmfu-btn:hover .fmfu-btn__arrow svg {
+  transform: translateX(4px);
+}
+
+/* ============================================================
+   RIGHT COLUMN — 3 Images
+   ============================================================ */
+.fmfu-images {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  gap: var(--fmfu-gap, 36px);
+  justify-content: flex-end;
+}
+
+.fmfu-image-item {
+  flex: 1 1 240px;
+  max-width: 380px;
+  aspect-ratio: 348 / 481;
+  overflow: hidden;
+}
+
+.fmfu-image-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fmfu-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #E2E1D7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed rgba(59, 86, 69, 0.2);
+}
+
+.fmfu-placeholder svg {
+  width: 50px;
+  height: 50px;
+  fill: rgba(59, 86, 69, 0.3);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Desktop Medium/Small (1200px - 1599px) */
+@media (max-width: 1599px) {
+  .fmfu-inner {
+    padding-left: 6%;
+    gap: 32px;
+  }
+  .fmfu-heading {
+    font-size: clamp(64px, 5.5vw, 80px);
+    margin-bottom: 36px;
+  }
+  .fmfu-body {
+    font-size: 17px;
+    margin-bottom: 24px;
+  }
+}
+
+/* Tablet (768px - 1199px) */
+@media (max-width: 1199px) {
+  .fmfu-section {
+    padding: 72px 0;
+  }
+  .fmfu-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 40px;
+    padding-right: 40px;
+    gap: 48px;
+  }
+  .fmfu-content {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+  }
+  .fmfu-heading {
+    font-size: 68px;
+    margin-bottom: 28px;
+  }
+  .fmfu-images {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .fmfu-image-item {
+    flex: 1 1 33%;
+    max-width: unset;
+  }
+}
+
+/* Mobile Devices (< 768px) */
+@media (max-width: 767px) {
+  .fmfu-section {
+    padding: 56px 0;
+  }
+  .fmfu-inner {
+    padding-left: 20px;
+    padding-right: 20px;
+    gap: 36px;
+  }
+  .fmfu-heading {
+    font-size: 52px;
+    margin-bottom: 24px;
+    line-height: 0.9;
+  }
+  .fmfu-body {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+  .fmfu-btn {
+    width: 100%;
+    max-width: 320px;
+    font-size: 16px;
+  }
+  
+  /* Horizontal scroll for images on mobile to keep look premium & clean */
+  .fmfu-images {
+    width: calc(100% + 40px); /* bleed into padding */
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* hide default scrollbar Firefox */
+    gap: 16px;
+  }
+  .fmfu-images::-webkit-scrollbar {
+    display: none; /* hide default scrollbar Chrome/Safari */
+  }
+  .fmfu-image-item {
+    flex: 0 0 240px;
+    scroll-snap-align: start;
+    aspect-ratio: 240 / 330; /* slightly more compact on mobile */
+  }
+}
+
+/* Very Small Mobile (< 400px) */
+@media (max-width: 399px) {
+  .fmfu-heading {
+    font-size: 36px;
+  }
+  .fmfu-image-item {
+    flex: 0 0 200px;
+  }
+}

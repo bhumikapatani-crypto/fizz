@@ -1,0 +1,145 @@
+<ul class="shop-element">
+  <!-- Hamburger: always first (moved to far-left on mobile via CSS) -->
+  <li class="side-wrap toggle-wrap">
+    <button class="navbar-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span class="menu-icon">
+        <i class="ri-menu-line"></i>
+      </span>
+    </button>
+  </li>
+  <!-- Account: first visible icon -->
+  <li class="side-wrap user-wrap">
+    <div class="user-warp">
+      {% if customer %}
+      <a class="header-icon" href="{{ routes.account_url }}">
+        <span class="icon"><svg width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.7" clip-path="url(#clip0_742_467)">
+<path d="M14.5957 13.9364C17.2865 12.8864 19.1891 10.2682 19.1891 7.21364C19.1891 3.23182 15.9683 0 12 0C8.03171 0 4.81087 3.23182 4.81087 7.21364C4.81087 10.2682 6.72707 12.8864 9.4043 13.9364C4.03624 15.1364 0 19.9364 0 25.6909C0 28.0773 1.92979 30.0136 4.30804 30.0136H19.7055C22.0838 30.0136 24.0136 28.0773 24.0136 25.6909C24.0136 19.95 19.9774 15.1364 14.6093 13.9364H14.5957ZM7.93658 7.21364C7.93658 4.96364 9.75764 3.13636 12 3.13636C14.2424 3.13636 16.0634 4.96364 16.0634 7.21364C16.0634 9.46364 14.2424 11.2909 12 11.2909C9.75764 11.2909 7.93658 9.46364 7.93658 7.21364ZM19.7055 26.8636H4.30804C3.65572 26.8636 3.12571 26.3318 3.12571 25.6773C3.12571 20.7682 7.10759 16.7727 12 16.7727C16.8924 16.7727 20.8743 20.7682 20.8743 25.6773C20.8743 26.3318 20.3443 26.8636 19.692 26.8636H19.7055Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_742_467">
+<rect width="24" height="30" fill="white"/>
+</clipPath>
+</defs>
+</svg></span>
+      </a>
+      {% else %}
+      <a class="header-icon" href="{{ routes.account_login_url }}">
+        <span class="icon"><svg width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.7" clip-path="url(#clip0_742_467)">
+<path d="M14.5957 13.9364C17.2865 12.8864 19.1891 10.2682 19.1891 7.21364C19.1891 3.23182 15.9683 0 12 0C8.03171 0 4.81087 3.23182 4.81087 7.21364C4.81087 10.2682 6.72707 12.8864 9.4043 13.9364C4.03624 15.1364 0 19.9364 0 25.6909C0 28.0773 1.92979 30.0136 4.30804 30.0136H19.7055C22.0838 30.0136 24.0136 28.0773 24.0136 25.6909C24.0136 19.95 19.9774 15.1364 14.6093 13.9364H14.5957ZM7.93658 7.21364C7.93658 4.96364 9.75764 3.13636 12 3.13636C14.2424 3.13636 16.0634 4.96364 16.0634 7.21364C16.0634 9.46364 14.2424 11.2909 12 11.2909C9.75764 11.2909 7.93658 9.46364 7.93658 7.21364ZM19.7055 26.8636H4.30804C3.65572 26.8636 3.12571 26.3318 3.12571 25.6773C3.12571 20.7682 7.10759 16.7727 12 16.7727C16.8924 16.7727 20.8743 20.7682 20.8743 25.6773C20.8743 26.3318 20.3443 26.8636 19.692 26.8636H19.7055Z" fill="white"/>
+</g>
+<defs>
+<clipPath id="clip0_742_467">
+<rect width="24" height="30" fill="white"/>
+</clipPath>
+</defs>
+</svg></span>
+      </a>
+      {% endif %}
+    </div>
+  </li>
+  <!-- Search: second -->
+  {%- if settings.search_enable -%}
+  <li class="side-wrap search-wrap">
+    <a class="search-btn header-icon" data-bs-toggle="modal" href="#seachmodal">
+      <span class="icon"><svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path opacity="0.7" d="M29.4362 27.5379L23.4285 21.3732C25.0638 19.1299 26.045 16.3567 26.045 13.3538C26.0278 5.98803 20.1922 0 13.0139 0C5.8356 0 0 5.98803 0 13.3538C0 20.7197 5.8356 26.7077 13.0139 26.7077C15.837 26.7077 18.4536 25.7715 20.5882 24.1994L26.6303 30.3994C27.009 30.788 27.5255 31 28.0247 31C28.5239 31 29.0403 30.8057 29.419 30.3994C30.1937 29.6046 30.1937 28.3151 29.419 27.5202L29.4362 27.5379ZM13.0139 22.645C8.0218 22.645 3.95926 18.4764 3.95926 13.3538C3.95926 8.23134 8.0218 4.06268 13.0139 4.06268C18.006 4.06268 22.0686 8.23134 22.0686 13.3538C22.0686 18.4764 18.006 22.645 13.0139 22.645Z" fill="white"/>
+</svg>
+</span>
+    </a>
+  </li>
+  {%- endif -%}
+  <!-- Wishlist (if enabled) -->
+  {%- if settings.wishlist_enable -%}
+  <li class="side-wrap wishlist-wrap">
+    <a class="header-icon" href="/pages/wishlist" title="Wishlist">
+      <span class="icon"><i class="feather-heart"></i></span>
+      <span class="wishlist-counter count">{{ wishlist.count }}</span>
+    </a>
+  </li>
+  {%- endif -%}
+  <!-- Cart: last -->
+  <li class="side-wrap cart-wrap">
+    <div class="shopping-cart">
+      <a class="cart-count header-icon" href="javascript:void(0);">
+        <span class="icon"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.7" clip-path="url(#clip0_742_470)">
+<path d="M29.6289 23.553C29.738 26.5429 26.7984 29.6334 23.7424 29.6334H6.51951C3.02691 29.6263 0.232826 26.5716 0.363799 23.1648L1.01139 6.20988C1.14236 3.06901 3.82002 0.359375 7.05795 0.359375H22.9347C26.3328 0.359375 28.894 3.22713 29.0104 6.47581L29.6289 23.553ZM27.6134 23.1001L26.9512 6.18113C26.8712 4.14711 25.0885 2.44371 23.0148 2.44371H7.18893C4.94056 2.43652 3.19426 4.31242 3.11422 6.47581L2.50302 23.4308C2.42298 25.5726 4.34391 27.5276 6.50496 27.5276L23.6042 27.5491C25.8234 27.5491 27.6934 25.321 27.6061 23.093L27.6134 23.1001Z" fill="white" stroke="white" stroke-miterlimit="10"/>
+<path d="M21.3336 5.74289C21.9011 5.72852 22.3959 6.10226 22.4105 6.64131C22.5196 10.7812 19.158 14.1233 14.996 14.1233C10.834 14.1233 7.50871 10.8172 7.57419 6.69881C7.58147 6.12382 8.04715 5.7357 8.62925 5.7357C9.24773 5.7357 9.69158 6.15976 9.69158 6.77068C9.67703 9.67437 11.9982 11.9815 14.9232 12.0174C17.8483 12.0534 20.3004 9.72468 20.2931 6.76349C20.2931 6.18132 20.686 5.74289 21.3263 5.72852L21.3336 5.74289Z" fill="white" stroke="white" stroke-miterlimit="10"/>
+</g>
+<defs>
+<clipPath id="clip0_742_470">
+<rect width="30" height="30" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</span>
+        <span id="cart-total" class="bigcounter count{% if cart.item_count == 0 %} fzm-cart-hidden{% endif %}">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </li>
+</ul>
+{% style %}
+button.navbar-toggle,
+a.header-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+button.navbar-toggle span.menu-icon,
+a.header-icon span.icon {
+  font-size: 16px;
+  display: block;
+  line-height: 0;
+}
+a.header-icon span.count {
+  position: relative;
+  {% if settings.enable_rtl %}
+  margin-right: 5px;
+  {% else %}
+  margin-left: 5px;
+  {% endif %}
+}
+a.header-icon span.count::before {
+  content: "(";
+}
+a.header-icon span.count::after {
+  content: ")";
+}
+@media (max-width: 479px) {
+  .wishlist-wrap a.header-icon span.icon,
+  .cart-wrap a.header-icon span.icon {
+    {% if settings.enable_rtl %}
+    margin-left: 5px;
+    {% else %}
+    margin-right: 5px;
+    {% endif %}
+  }
+  a.header-icon span.count::before,
+  a.header-icon span.count::after {
+    display: none;
+  }
+  a.header-icon span.count {
+    background-color: var(--font-color-primary);
+    color: #ffffff;
+    font-size: 10px;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -5px;
+    {% if settings.enable_rtl %}
+    margin-right: 0px;
+    left: 0;
+    {% else %}
+    margin-left: 0px;
+    right: 0;
+    {% endif %}
+    border-radius: 100%;
+  } 
+}
+{% endstyle %}

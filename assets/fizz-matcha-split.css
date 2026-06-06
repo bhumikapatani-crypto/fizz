@@ -1,0 +1,214 @@
+/* ============================================================
+   Fizz & Matcha — Split Image / Text Section
+   Figma node 742:630  |  Design canvas: 1920 × 645 px
+   BG #F5F4EC | Heading Lilita One #7B9844 | Body Inter #3B5645
+   ============================================================ */
+
+/* ---- Scoped reset ---- */
+.fms-section *,
+.fms-section *::before,
+.fms-section *::after {
+  box-sizing: border-box;
+}
+
+/* ---- Section wrapper ---- */
+.fms-section {
+  background-color: var(--fms-bg, #F5F4EC);
+  border-bottom: 1px solid var(--fms-border-color, #7B9844);
+  overflow: hidden;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ---- Two-column flex row ---- */
+.fms-inner {
+  display: flex;
+  align-items: stretch;
+  min-height: 645px;
+}
+
+/* ============================================================
+   IMAGE PANEL — left, 52.55 % of total width (1009 / 1920)
+   ============================================================ */
+.fms-img-panel {
+  flex: 0 0 var(--fms-img-pct, 52.55%);
+  width: var(--fms-img-pct, 52.55%);
+  overflow: hidden;
+  position: relative;
+}
+
+.fms-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.fms-img-placeholder {
+  position: absolute;
+  inset: 0;
+  background: #dddbc9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fms-img-placeholder svg {
+  width: 60%;
+  height: 60%;
+  opacity: 0.35;
+}
+
+/* ============================================================
+   CONTENT PANEL — right, fills remaining width
+   Text block: max-width 677 px, centered in panel with 117 px padding
+   ============================================================ */
+.fms-content-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 117px;
+}
+
+.fms-content {
+  width: 100%;
+  max-width: 677px;
+  text-align: right;
+}
+
+/* ---- Heading: Lilita One, 89 / 79 px ---- */
+.fms-heading {
+  font-family: 'Lilita One', cursive;
+  font-size: var(--fms-h-size, 89px);
+  font-weight: 400;
+  line-height: 0.888;       /* Figma: 79 px line-height / 89 px font-size */
+  color: var(--fms-h-color, #7B9844);
+  text-transform: capitalize;
+  margin: 0 0 45px;         /* Figma gap between heading bottom and body top */
+  word-break: break-word;
+}
+
+/* ---- Body: Inter, 19 / 31 px ---- */
+.fms-body {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fms-b-size, 19px);
+  font-weight: 400;
+  line-height: 1.63;        /* Figma: 30.97 / 19 ≈ 1.63 */
+  color: var(--fms-b-color, #3B5645);
+  margin: 0;
+  white-space: pre-line;    /* respects \n paragraph breaks in textarea */
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Large desktop 1200–1499 px */
+@media (max-width: 1499px) {
+  .fms-inner {
+    min-height: 560px;
+  }
+  .fms-content-panel {
+    padding: 48px 80px;
+  }
+  .fms-heading {
+    font-size: clamp(64px, var(--fms-h-size, 89px), 89px);
+    line-height: 0.888;
+  }
+}
+
+/* Tablet 992–1199 px */
+@media (max-width: 1199px) {
+  .fms-inner {
+    min-height: 480px;
+  }
+  .fms-content-panel {
+    padding: 40px 50px;
+  }
+  .fms-heading {
+    font-size: 64px;
+    margin-bottom: 32px;
+  }
+  .fms-body {
+    font-size: 17px;
+  }
+}
+
+/* Small tablet ≤ 991 px — stack: image top, text bottom, center-align */
+@media (max-width: 991px) {
+  .fms-inner {
+    flex-direction: column;
+    min-height: unset;
+  }
+  .fms-img-panel {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 420px;
+    position: relative;
+  }
+  .fms-content-panel {
+    padding: 56px 40px;
+    justify-content: center;
+    align-items: center;
+  }
+  .fms-content {
+    max-width: 680px;
+    text-align: center;
+  }
+  .fms-heading {
+    font-size: 52px;
+    line-height: 0.9;
+    margin-bottom: 28px;
+  }
+  .fms-body {
+    font-size: 17px;
+  }
+}
+
+/* Mobile ≤ 767 px */
+@media (max-width: 767px) {
+  .fms-img-panel {
+    height: 300px;
+  }
+  .fms-content-panel {
+    padding: 48px 28px;
+  }
+  .fms-content {
+    max-width: 100%;
+    text-align: center;
+  }
+  .fms-heading {
+    font-size: 40px;
+    line-height: 0.9;
+    margin-bottom: 22px;
+  }
+  .fms-body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+
+/* Small mobile ≤ 479 px */
+@media (max-width: 479px) {
+  .fms-img-panel {
+    height: 240px;
+  }
+  .fms-content-panel {
+    padding: 40px 20px;
+  }
+  .fms-content {
+    text-align: center;
+  }
+  .fms-heading {
+    font-size: 34px;
+    margin-bottom: 18px;
+  }
+  .fms-body {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}

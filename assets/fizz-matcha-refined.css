@@ -1,0 +1,181 @@
+/* ============================================================
+   Fizz & Matcha — "Matcha, Refined." Hero + Marquee Section
+   Figma node 733:123  |  1920 × 386 px  |  BG #7B9844
+   ============================================================ */
+
+.fmr-section *,
+.fmr-section *::before,
+.fmr-section *::after { box-sizing: border-box; }
+
+/* ---- Section wrapper ---- */
+.fmr-section {
+  background-color: var(--fmr-bg, #7B9844);
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  min-height: 386px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ============================================================
+   TOP CONTENT — heading + body  |  pt:74px
+   ============================================================ */
+.fmr-content {
+  width: 100%;
+  max-width: 1200px;
+  padding: 74px 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Heading: Lilita One 89 / 79 px, white */
+.fmr-heading {
+  font-family: 'Lilita One', cursive;
+  font-size: var(--fmr-h-size, 89px);
+  font-weight: 400;
+  line-height: 0.888;           /* Figma: 79 / 89 */
+  color: var(--fmr-h-color, #FFFFFF);
+  text-transform: capitalize;
+  margin: 0 0 44px;             /* Figma gap to body */
+  word-break: break-word;
+}
+
+/* Body: Inter 19px, white 70% opacity */
+.fmr-body {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fmr-body-size, 19px);
+  font-weight: 400;
+  line-height: 1.63;
+  color: var(--fmr-body-color, rgba(255, 255, 255, 0.7));
+  margin: 0;
+  max-width: 1055px;
+}
+
+/* ============================================================
+   MARQUEE BAR — infinite scroll left
+   Figma: items at y=284px from section top, h≈56px
+   ============================================================ */
+.fmr-marquee-wrap {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 25px;
+  padding-bottom: 40px;   /* bottom padding for marquee row */
+}
+
+/* Double-width track: items duplicated for seamless loop */
+.fmr-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: fmr-scroll var(--fmr-speed, 28s) linear infinite;
+}
+
+.fmr-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes fmr-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Each marquee item */
+.fmr-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 32px;
+  height: 56px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Divider image or fallback line */
+.fmr-divider {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.fmr-divider img {
+  height: 60px;
+  width: auto;
+  display: block;
+}
+
+/* Fallback CSS divider when no image is set */
+.fmr-divider--line {
+  width: 1px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.fmr-item--nodivider .fmr-divider {
+  display: none;
+}
+
+/* Leaf icon wrapper */
+.fmr-leaf {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+}
+
+.fmr-leaf img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Item text: Inter 400, 24px, white */
+.fmr-item-text {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fmr-item-size, 24px);
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1499px) {
+  .fmr-heading { font-size: 72px; margin-bottom: 36px; }
+  .fmr-section { min-height: 340px; }
+  .fmr-content { padding-top: 60px; }
+  .fmr-item-text { font-size: 20px; }
+}
+
+@media (max-width: 1199px) {
+  .fmr-heading { font-size: 60px; margin-bottom: 28px; }
+  .fmr-section { min-height: 300px; }
+  .fmr-content { padding-top: 48px; }
+  .fmr-body { font-size: 17px; }
+  .fmr-item-text { font-size: 18px; }
+  .fmr-item { padding: 0 28px; gap: 10px; }
+}
+
+@media (max-width: 767px) {
+  .fmr-heading { font-size: 44px; margin-bottom: 22px; }
+  .fmr-section { min-height: unset; }
+  .fmr-content { padding: 48px 20px 0; }
+  .fmr-body { font-size: 15px; }
+  .fmr-item-text { font-size: 16px; }
+  .fmr-item { padding: 0 20px; height: 48px; }
+}
+
+@media (max-width: 479px) {
+  .fmr-heading { font-size: 36px; }
+  .fmr-item-text { font-size: 14px; }
+  .fmr-item { padding: 0 16px; }
+}

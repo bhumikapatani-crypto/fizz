@@ -1,0 +1,1240 @@
+{%- style -%}
+  .font-brand-{{ section.id }} {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* ---- Outer wrapper — NO z-index / isolation so it never overlaps neighbours ---- */
+  .section-wrap-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0;
+    background: #042916;
+    overflow-x: clip !important;
+    z-index: 2;
+  }
+
+  #shopify-section-{{ section.id }} {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    overflow: visible !important;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  {% unless section.settings.full_width %}
+  .section-wrap-{{ section.id }} {
+    max-width: 1780px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  {% endunless %}
+
+  /* Pin spacer GSAP creates — must match section bg so no white flash.
+     GSAP wraps the section: #shopify-section > .pin-spacer > #rewards-wrap */
+  #shopify-section-{{ section.id }} > .pin-spacer {
+    background: #042916 !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  /* ---- Bg shell — no extra height/isolation ---- */
+  .rewards-bg-{{ section.id }} {
+    position: relative;
+    background: #042916;
+    color: #fff;
+    overflow: visible;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* ---- Inner flex column ---- */
+  .rewards-inner-{{ section.id }} {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: min(1778px, 100%);
+    margin: 0 auto;
+    padding: 0px 50px 60px 50px;
+    min-height: auto;
+    gap: 40px;
+    box-sizing: border-box;
+    background: #042916;
+    color: #fff;
+    overflow: visible;
+  }
+
+  /* ---- Header capsule ---- */
+  .header-capsule-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    background: #7B9745;
+    border-radius: 0 0 2.5rem 2.5rem;
+    padding: 65px 40px 65px 40px;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.28);
+    overflow: visible;
+  }
+
+  .header-capsule-{{ section.id }} span {
+  display: block;
+    margin-bottom: 8px;
+    font-size: 19px;
+    line-height: 1.2;
+    text-transform: capitalize;
+    /* letter-spacing: 0.1em; */
+    color: rgba(4, 41, 22, 0.75);
+    font-weight: 700;
+    font-family: 'Inter';
+  }
+
+  .header-capsule-{{ section.id }} h2 {
+   margin: 0;
+    color: #fff;
+    font-size: 89px;
+    line-height: 0.95;
+    letter-spacing: 1px;
+    font-weight: 400;
+    font-family: 'Lilita One';
+}
+  
+
+  /* ---- Order Now floating widget ---- */
+  .order-now-float-{{ section.id }} {
+    position: absolute;
+    top: -100px;
+    right: clamp(20px, 3vw, 54px);
+    z-index: 30!important;
+    display: block;
+    padding: 0;
+    width: clamp(82px, 15vw, 175px);
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    transform: rotate(3deg);
+  }
+
+  .order-now-float-{{ section.id }}:hover {
+    transform: translateY(-2px) rotate(8deg);
+  }
+
+  .order-now-float-{{ section.id }} img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* ---- Misc ---- */
+  .cup-shadow-{{ section.id }} {
+    filter: drop-shadow(0px 10px 18px rgba(0, 0, 0, 0.55));
+  }
+
+  .sketchy-circle-{{ section.id }} {
+    border: 4px dashed #84A75E !important;
+    box-shadow: 0 0 0 5px #042916, 0 0 0 9px #84A75E !important;
+    border-radius: 50% !important;
+  }
+
+  /* ============================================================
+     PRODUCTS ROW — Figma: 1920px section, row height 648px
+     Col widths: L=36% | sep=1% | C=26% | sep=1% | R=36%
+     ============================================================ */
+  .rewards-row-{{ section.id }} {
+    width: 100%;
+    height: 648px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 0;
+  }
+
+  /* Left & right product columns — Figma: 692/1920 = 36% each */
+  .reward-column-{{ section.id }} {
+    flex: 0 0 36%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+  }
+
+  /* Center badge column — Figma: 539/1920 = 28% */
+  .reward-center-{{ section.id }} {
+    flex: 0 0 26%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    min-width: 0;
+    gap: 125px;
+  }
+
+  /* Separator / partition cells — Figma: thin vertical lines */
+  .reward-arrow-cell-{{ section.id }} {
+    flex: 0 0 1%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    align-self: flex-start;
+    padding-top: 184px;  /* Figma: separator starts 103px below row top */
+    min-width: 0;
+  }
+
+  .reward-image-wrap-{{ section.id }} {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .reward-product-{{ section.id }} {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    will-change: transform, opacity;
+  }
+
+  .reward-product-absolute-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    will-change: transform, opacity;
+  }
+
+  /* Cup images — Figma: 530px tall (357×530 source) */
+  .reward-cup-image-{{ section.id }} {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: 530px;
+    object-fit: contain;
+    object-position: bottom;
+  }
+
+  /* Side leaf decorations */
+  .reward-side-left-{{ section.id }} {
+    position: absolute;
+    left: -106px;
+    top: -25px;
+    z-index: 0;
+  }
+
+  .reward-side-right-{{ section.id }} {
+    position: absolute;
+    right: 26px;
+    top: -25px;
+    z-index: 0;
+    transform: scaleX(-1);
+  }
+
+  .reward-side-left-{{ section.id }} img,
+  .reward-side-right-{{ section.id }} img {
+    width: 120px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .reward-badge-left-{{ section.id }},
+  .reward-badge-right-{{ section.id }} {
+    position: absolute;
+    bottom: 4px;
+    right: -24px;
+    z-index: 10;
+  }
+
+  .reward-badge-right-{{ section.id }} {
+    right: 128px;
+    bottom: 2px;
+  }
+
+  /* Partition separator image — Figma: separator height 350px */
+  .reward-partition-{{ section.id }} {
+    display: block;
+    width: auto;
+    height: 350px;
+    object-fit: contain;
+  }
+
+  /* Center badge circle — Figma: 237px */
+  .points-circle-image-{{ section.id }} {
+    display: block;
+    width: 237px;
+    height: 237px;
+    object-fit: contain;
+  }
+
+  /* Right product slot */
+  .product-slot-{{ section.id }} {
+    position: relative;
+    height: 530px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  /* Section headings — Figma: Inter 24px w=700 */
+  .section-heading-{{ section.id }} {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    font-weight: 700;
+    color: #84A75E;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .arrow-{{ section.id }} {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #84A75E;
+    line-height: 1;
+  }
+
+  .badge-image-{{ section.id }} {
+    /* width: 80px;
+    height: 80px; */
+    object-fit: contain;
+  }
+
+  .badge-image1-{{ section.id }} {
+    /* width: 80px;
+    height: 80px; */
+    object-fit: contain;
+    margin-right: 0;
+  }
+
+  .badge-image12-{{ section.id }} {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-right: 0;
+  }
+
+  .tt {
+    display: block;
+    margin-right: 0;
+  }
+
+  /* ============================================================
+     TABLET (≤1024px) — static display, NO animation
+     ============================================================ */
+  @media (max-width: 1024px) {
+    #shopify-section-{{ section.id }} {
+      z-index: auto !important;
+      pointer-events: auto !important;
+      height: auto !important;
+      min-height: 0 !important;
+      max-height: none !important;
+    }
+
+    #shopify-section-{{ section.id }} > .pin-spacer {
+      display: contents !important;
+      width: 100% !important;
+      height: auto !important;
+      min-height: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      pointer-events: none !important;
+    }
+
+    #shopify-section-{{ section.id }} > .pin-spacer > #rewards-wrap-{{ section.id }} {
+      position: relative !important;
+      inset: auto !important;
+      width: 100% !important;
+      height: auto !important;
+      max-height: none !important;
+      transform: none !important;
+      pointer-events: auto !important;
+    }
+
+    .section-wrap-{{ section.id }} {
+      min-height: unset;
+      height: auto !important;
+      transform: none !important;
+    }
+
+    .rewards-inner-{{ section.id }} {
+      min-height: unset;
+      padding: 0 24px 60px;
+      gap: 32px;
+      justify-content: flex-start;
+    }
+
+    .header-capsule-{{ section.id }} {
+      padding: 48px 80px 48px 40px;
+    }
+
+    .header-capsule-{{ section.id }} h2 {
+      font-size: 64px;
+    }
+
+    .order-now-float-{{ section.id }} {
+      top: -70px;
+      width: clamp(70px, 12vw, 130px);
+    }
+
+    .rewards-row-{{ section.id }} {
+      height: auto;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 32px 16px;
+    }
+
+    .reward-arrow-cell-{{ section.id }} {
+      display: none;
+    }
+
+    .reward-column-{{ section.id }} {
+      flex: 0 0 calc(50% - 8px);
+    }
+
+    .reward-center-{{ section.id }} {
+      flex: 0 0 100%;
+      flex-direction: row;
+      justify-content: center;
+      gap: 40px;
+      align-self: center;
+    }
+
+    .product-slot-{{ section.id }} {
+      position: relative;
+      height: 320px;
+    }
+
+    .reward-cup-image-{{ section.id }} {
+      height: 320px;
+    }
+
+    .points-circle-image-{{ section.id }} {
+      width: 180px;
+      height: 180px;
+    }
+
+    /* Force all animated elements visible — overrides any GSAP inline styles */
+    #header-capsule-{{ section.id }},
+    #product-left-{{ section.id }},
+    #product-right-1-{{ section.id }},
+    #points-circle-{{ section.id }},
+    #heading-center-{{ section.id }},
+    #heading-left-{{ section.id }},
+    #heading-right-{{ section.id }},
+    #arrow-left-{{ section.id }},
+    #arrow-right-{{ section.id }} {
+      opacity: 1 !important;
+      transform: none !important;
+      visibility: visible !important;
+    }
+
+    #product-right-2-{{ section.id }},
+    #product-right-3-{{ section.id }},
+    #product-right-4-{{ section.id }} {
+      display: none !important;
+      opacity: 0 !important;
+    }
+  }
+
+  /* ============================================================
+     MOBILE (≤767px) — single column stack
+     ============================================================ */
+  @media (max-width: 767px) {
+    #shopify-section-{{ section.id }},
+    .section-wrap-{{ section.id }},
+    .rewards-bg-{{ section.id }} {
+      overflow: visible !important;
+    }
+
+    .rewards-inner-{{ section.id }} {
+      padding: 0 0 48px;
+      gap: 24px;
+    }
+
+    .header-capsule-{{ section.id }} {
+      border-radius: 0 0 24px 24px;
+      padding: 32px 20px 28px;
+      text-align: center;
+    }
+
+    .header-capsule-{{ section.id }} h2 {
+      font-size: 48px;
+    }
+
+    .header-capsule-{{ section.id }} span {
+      font-size: 14px;
+    }
+
+    .order-now-float-{{ section.id }} {
+      top: -48px;
+      right: 20px;
+      width: 72px;
+    }
+
+    .rewards-row-{{ section.id }} {
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      padding: 0 20px;
+    }
+
+    .reward-column-{{ section.id }},
+    .reward-center-{{ section.id }} {
+      flex: 0 0 100%;
+      width: 100%;
+      align-items: center;
+      padding: 0;
+      border-bottom: none;
+    }
+
+    /* Earn + badge: stack vertically */
+    .reward-center-{{ section.id }} {
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* Product images */
+    .product-slot-{{ section.id }} {
+      position: relative;
+      height: 260px;
+      width: 100%;
+    }
+
+    .reward-product-absolute-{{ section.id }} {
+      position: relative;
+      inset: unset;
+      justify-content: center;
+    }
+
+    .reward-cup-image-{{ section.id }} {
+      height: 240px;
+    }
+
+    /* Badges — keep absolute so they touch the bottle */
+    .reward-badge-left-{{ section.id }} {
+      position: absolute;
+      bottom: -11px;
+      right: -10px;
+    }
+
+    .reward-badge-right-{{ section.id }} {
+      position: absolute;
+      bottom: -8px;
+      right: 0px;
+    }
+
+    .badge-image-{{ section.id }},
+    .badge-image1-{{ section.id }} {
+      width: 90px;
+      height: 90px;
+    }
+
+    .points-circle-image-{{ section.id }} {
+      width: 160px;
+      height: 160px;
+    }
+
+    /* Side leaf decorations — hide on small screens */
+    .reward-side-left-{{ section.id }},
+    .reward-side-right-{{ section.id }} {
+      display: none;
+    }
+
+    .section-heading-{{ section.id }} {
+      font-size: 16px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    img.badge-image-reward_k9GRCb {
+    width: 50px;
+    height: 50px;
+}
+img.badge-image1-reward_k9GRCb {
+  width: 50px;
+    height: 50px;
+}
+  }
+
+  /* ============================================================
+     SMALL MOBILE (≤480px)
+     ============================================================ */
+  @media (max-width: 480px) {
+    .header-capsule-{{ section.id }} h2 {
+      font-size: 38px;
+    }
+
+    .reward-cup-image-{{ section.id }} {
+      height: 180px;
+    }
+
+    .product-slot-{{ section.id }} {
+      height: 200px;
+    }
+
+    .points-circle-image-{{ section.id }} {
+      width: 110px;
+      height: 110px;
+    }
+
+    .order-now-float-{{ section.id }} {
+      width: 56px;
+      top: -36px;
+      right: 18px;
+    }
+  }
+{%- endstyle -%}
+
+
+{% assign cup_class = 'reward-cup-image-' | append: section.id | append: ' cup-shadow-' | append: section.id %}
+{% assign placeholder_class = 'reward-cup-image-' | append: section.id | append: ' cup-shadow-' | append: section.id %}
+
+<div id="rewards-wrap-{{ section.id }}" class="section-wrap-{{ section.id }}">
+
+  <div class="rewards-bg-{{ section.id }} font-brand-{{ section.id }}">
+    <section
+      id="rewards-section-{{ section.id }}"
+      class="rewards-inner-{{ section.id }}"
+    >
+
+      <!-- Header Capsule -->
+      <div
+        id="header-capsule-{{ section.id }}"
+        class="header-capsule-{{ section.id }}"
+      >
+        <span>{{ section.settings.capsule_subheading }}</span>
+        <h2>{{ section.settings.capsule_heading }}</h2>
+        {%- if section.settings.order_now_image != blank -%}
+          <a
+            href="{{ section.settings.order_now_link | default: '/collections/all' }}"
+            class="order-now-float-{{ section.id }}"
+            aria-label="{{ section.settings.order_now_text | default: 'Order Now' }}"
+          >
+            <img
+              src="{{ section.settings.order_now_image | image_url: width: 320 }}"
+              alt="{{ section.settings.order_now_image.alt | default: 'Order Now' }}"
+              loading="eager"
+            >
+          </a>
+        {%- endif -%}
+      </div>
+
+      <!-- Products Row -->
+      <div class="rewards-row-{{ section.id }}">
+
+        <!-- Left column -->
+        <div class="reward-column-{{ section.id }}">
+          <h3 class="section-heading-{{ section.id }}" id="heading-left-{{ section.id }}">{{ section.settings.left_heading }}</h3>
+          <div class="reward-image-wrap-{{ section.id }}">
+            <div id="product-left-{{ section.id }}" class="reward-product-{{ section.id }}">
+              {% if section.settings.side_image_left %}
+                <div class="reward-side-left-{{ section.id }}">
+                  <img src="{{ section.settings.side_image_left | image_url: width: 520 }}" alt="Side Image Left">
+                </div>
+              {% endif %}
+              {% if section.settings.image_left %}
+                {{ section.settings.image_left | image_url: width: 500 | image_tag: class: cup_class, alt: section.settings.image_left.alt }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: placeholder_class }}
+              {% endif %}
+              {% if section.settings.badge_image_left %}
+                <div class="reward-badge-left-{{ section.id }}">
+                  <img src="{{ section.settings.badge_image_left | image_url: width: 160 }}" class="badge-image-{{ section.id }}" alt="Point Badge">
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Left separator -->
+        <div class="reward-arrow-cell-{{ section.id }}">
+          {% if section.settings.partition_image_1 %}
+            <img src="{{ section.settings.partition_image_1 | image_url: width: 420 }}" class="reward-partition-{{ section.id }}" id="arrow-left-{{ section.id }}" alt="Partition 1">
+          {% else %}
+            <span class="arrow-{{ section.id }}" id="arrow-left-{{ section.id }}">|</span>
+          {% endif %}
+        </div>
+
+        <!-- Center badge column -->
+        <div class="reward-center-{{ section.id }}">
+          <h3 class="section-heading-{{ section.id }}" style="position: relative; top: 0;" id="heading-center-{{ section.id }}">{{ section.settings.center_heading }}</h3>
+          {% if section.settings.center_badge_image %}
+            <div id="points-circle-{{ section.id }}" style="z-index: 10;">
+              <img src="{{ section.settings.center_badge_image | image_url: width: 500 }}" class="points-circle-image-{{ section.id }}" alt="Points Badge">
+            </div>
+          {% else %}
+            <div
+              id="points-circle-{{ section.id }}"
+              class="sketchy-circle-{{ section.id }}"
+              style="width: 237px; height: 237px; display: flex; flex-direction: column; justify-content: center; align-items: center; background: #042916; z-index: 10;"
+            >
+              <span style="font-size: clamp(36px, 4vw, 48px); font-weight: 700; line-height: 1; color: #fff;">{{ section.settings.center_points_value }}</span>
+              <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: #84A75E; font-weight: 500; margin-top: 4px;">{{ section.settings.center_points_label }}</span>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Right separator -->
+        <div class="reward-arrow-cell-{{ section.id }}">
+          {% if section.settings.partition_image_2 %}
+            <img src="{{ section.settings.partition_image_2 | image_url: width: 420 }}" class="reward-partition-{{ section.id }}" id="arrow-right-{{ section.id }}" alt="Partition 2">
+          {% else %}
+            <span class="arrow-{{ section.id }}" id="arrow-right-{{ section.id }}">|</span>
+          {% endif %}
+        </div>
+
+        <!-- Right column -->
+        <div class="reward-column-{{ section.id }}">
+          <h3 class="section-heading-{{ section.id }}" id="heading-right-{{ section.id }}">{{ section.settings.right_heading }}</h3>
+          <div class="product-slot-{{ section.id }}" style="width: 100%;">
+
+            <div id="product-right-1-{{ section.id }}" class="reward-product-absolute-{{ section.id }}">
+              {% if section.settings.side_image_right %}
+                <div class="reward-side-right-{{ section.id }}">
+                  <img src="{{ section.settings.side_image_right | image_url: width: 520 }}" alt="Side Image Right">
+                </div>
+              {% endif %}
+              {% if section.settings.image_right_1 %}
+                {{ section.settings.image_right_1 | image_url: width: 500 | image_tag: class: cup_class, alt: section.settings.image_right_1.alt }}
+              {% else %}
+                {{ 'product-2' | placeholder_svg_tag: placeholder_class }}
+              {% endif %}
+              {% if section.settings.badge_image_right %}
+                <div class="reward-badge-right-{{ section.id }} tt">
+                  <img src="{{ section.settings.badge_image_right | image_url: width: 160 }}" class="badge-image1-{{ section.id }}" alt="Free Drink Badge">
+                </div>
+              {% endif %}
+            </div>
+
+            <div id="product-right-2-{{ section.id }}" class="reward-product-absolute-{{ section.id }}" style="pointer-events: none;">
+              {% if section.settings.side_image_right %}
+                <div class="reward-side-right-{{ section.id }}">
+                  <img src="{{ section.settings.side_image_right | image_url: width: 520 }}" alt="Side Image Right">
+                </div>
+              {% endif %}
+              {% if section.settings.image_right_2 %}
+                {{ section.settings.image_right_2 | image_url: width: 500 | image_tag: class: cup_class, alt: section.settings.image_right_2.alt }}
+              {% else %}
+                {{ 'product-3' | placeholder_svg_tag: placeholder_class }}
+              {% endif %}
+              {% if section.settings.badge_image_right %}
+                <div class="reward-badge-right-{{ section.id }} tt">
+                  <img src="{{ section.settings.badge_image_right | image_url: width: 160 }}" class="badge-image1-{{ section.id }}" alt="Free Drink Badge">
+                </div>
+              {% endif %}
+            </div>
+
+            <div id="product-right-3-{{ section.id }}" class="reward-product-absolute-{{ section.id }}" style="pointer-events: none;">
+              {% if section.settings.side_image_right %}
+                <div class="reward-side-right-{{ section.id }}">
+                  <img src="{{ section.settings.side_image_right | image_url: width: 520 }}" alt="Side Image Right">
+                </div>
+              {% endif %}
+              {% if section.settings.image_right_3 %}
+                {{ section.settings.image_right_3 | image_url: width: 500 | image_tag: class: cup_class, alt: section.settings.image_right_3.alt }}
+              {% else %}
+                {{ 'product-4' | placeholder_svg_tag: placeholder_class }}
+              {% endif %}
+              {% if section.settings.badge_image_right %}
+                <div class="reward-badge-right-{{ section.id }} tt">
+                  <img src="{{ section.settings.badge_image_right | image_url: width: 160 }}" class="badge-image1-{{ section.id }}" alt="Free Drink Badge">
+                </div>
+              {% endif %}
+            </div>
+
+            <div id="product-right-4-{{ section.id }}" class="reward-product-absolute-{{ section.id }}" style="pointer-events: none;">
+              {% if section.settings.side_image_right %}
+                <div class="reward-side-right-{{ section.id }}">
+                  <img src="{{ section.settings.side_image_right | image_url: width: 520 }}" alt="Side Image Right">
+                </div>
+              {% endif %}
+              {% if section.settings.image_right_4 %}
+                {{ section.settings.image_right_4 | image_url: width: 500 | image_tag: class: cup_class, alt: section.settings.image_right_4.alt }}
+              {% else %}
+                {{ 'product-5' | placeholder_svg_tag: placeholder_class }}
+              {% endif %}
+              {% if section.settings.badge_image_right %}
+                <div class="reward-badge-right-{{ section.id }} tt">
+                  <img src="{{ section.settings.badge_image_right | image_url: width: 160 }}" class="badge-image1-{{ section.id }}" alt="Free Drink Badge">
+                </div>
+              {% endif %}
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const sectionId = "{{ section.id }}";
+    const sectionSelector = "#rewards-wrap-" + sectionId;
+    let rewardTimeline = null;
+    let gsapLoading = false;
+    let _lastBreakpoint = null;
+    let _initAttempts = 0;
+    const MAX_INIT_ATTEMPTS = 3;
+
+    const isDesktop = () => window.innerWidth > 1024;
+
+    const byId = (prefix) => document.getElementById(prefix + sectionId);
+
+    const animatedPrefixes = [
+      "header-capsule-", "points-circle-", "heading-center-",
+      "heading-left-", "heading-right-", "arrow-left-",
+      "arrow-right-", "product-left-", "product-right-1-",
+      "product-right-2-", "product-right-3-", "product-right-4-"
+    ];
+
+    const setVisible = (el) => {
+      if (!el) return;
+      el.style.opacity = "1";
+      el.style.transform = "none";
+      el.style.visibility = "visible";
+    };
+
+    const revealStatic = () => {
+      animatedPrefixes.forEach((prefix) => setVisible(byId(prefix)));
+
+      if (isDesktop()) {
+        ["product-right-2-", "product-right-3-", "product-right-4-"].forEach((prefix) => {
+          const el = byId(prefix);
+          if (el) el.style.opacity = "0";
+        });
+      }
+    };
+
+    const cleanupRewardPinning = () => {
+      const shopifySection = document.querySelector("#shopify-section-" + sectionId);
+      
+      if (rewardTimeline) {
+        if (rewardTimeline.scrollTrigger) {
+          rewardTimeline.scrollTrigger.kill(true);
+        }
+        rewardTimeline.kill();
+        rewardTimeline = null;
+      }
+
+      if (window.ScrollTrigger) {
+        ScrollTrigger.getAll().forEach((trigger) => {
+          const triggerId = trigger.vars && trigger.vars.id;
+          if (triggerId && triggerId.includes(sectionId)) {
+            trigger.kill(true);
+          }
+        });
+      }
+
+      // Wait a frame for GSAP to cleanup, then remove spacers
+      requestAnimationFrame(() => {
+        // Remove ALL pin-spacers related to this section
+        const allSpacers = document.querySelectorAll(".pin-spacer");
+        allSpacers.forEach((spacer) => {
+          const hasRewardContent = spacer.querySelector(sectionSelector);
+          if (hasRewardContent) {
+            const parent = spacer.parentNode;
+            if (parent) {
+              // Move content out of spacer
+              while (spacer.firstChild) {
+                parent.insertBefore(spacer.firstChild, spacer);
+              }
+              spacer.remove();
+            }
+          }
+        });
+
+        const sectionEl = document.querySelector(sectionSelector);
+        if (sectionEl) {
+          sectionEl.removeAttribute("style");
+        }
+
+        if (shopifySection) {
+          shopifySection.style.height = "";
+          shopifySection.style.minHeight = "";
+        }
+      });
+    };
+
+    const loadGsap = (callback) => {
+      if (window.gsap && window.ScrollTrigger) { callback(); return; }
+      if (gsapLoading) return;
+      gsapLoading = true;
+      const s1 = document.createElement('script');
+      s1.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
+      s1.onload = () => {
+        const s2 = document.createElement('script');
+        s2.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js';
+        s2.onload = () => {
+          gsapLoading = false;
+          callback();
+        };
+        s2.onerror = () => {
+          gsapLoading = false;
+          revealStatic();
+        };
+        document.head.appendChild(s2);
+      };
+      s1.onerror = () => {
+        gsapLoading = false;
+        revealStatic();
+      };
+      document.head.appendChild(s1);
+    };
+
+    const initRewardScroll = () => {
+      if (!isDesktop()) {
+        cleanupRewardPinning();
+        revealStatic();
+        return;
+      }
+
+      const sectionEl = document.querySelector(sectionSelector);
+      if (!sectionEl || !window.gsap || !window.ScrollTrigger) return;
+
+      // Prevent multiple init attempts
+      if (rewardTimeline) return;
+      
+      _initAttempts++;
+      if (_initAttempts > MAX_INIT_ATTEMPTS) {
+        console.warn("Reward section: max init attempts reached, using static fallback");
+        revealStatic();
+        return;
+      }
+
+      try {
+        gsap.registerPlugin(ScrollTrigger);
+        cleanupRewardPinning();
+
+        gsap.set("#header-capsule-" + sectionId, { opacity: 1, y: 0 });
+        gsap.set("#points-circle-" + sectionId, { opacity: 0, scale: 0, rotation: 0 });
+        gsap.set(["#heading-center-" + sectionId, "#heading-left-" + sectionId, "#heading-right-" + sectionId], { opacity: 0 });
+        gsap.set(["#arrow-left-" + sectionId, "#arrow-right-" + sectionId], { opacity: 0 });
+        gsap.set("#product-left-" + sectionId, { opacity: 0, x: -90, y: 0, scale: 0.95 });
+        gsap.set("#product-right-1-" + sectionId, { opacity: 0, x: 90, y: 0, scale: 0.95 });
+        gsap.set(["#product-right-2-" + sectionId, "#product-right-3-" + sectionId, "#product-right-4-" + sectionId], { opacity: 0, x: 0, y: 0, scale: 1 });
+
+        rewardTimeline = gsap.timeline({
+          scrollTrigger: {
+            id: "reward-scroll-" + sectionId,
+            trigger: sectionSelector,
+            start: "top 110px",
+            end: "+=4000",
+            scrub: 1.5,
+            pin: true,
+            pinSpacing: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            fastScrollEnd: true,
+            preventOverlaps: true,
+            onRefresh: (self) => {
+              // Ensure no duplicate rendering
+              const spacers = document.querySelectorAll(".pin-spacer");
+              if (spacers.length > 1) {
+                for (let i = 1; i < spacers.length; i++) {
+                  spacers[i].remove();
+                }
+              }
+            }
+          }
+        });
+
+        rewardTimeline
+          .addLabel("intro")
+          .to("#points-circle-" + sectionId,  { opacity: 1, scale: 1, rotation: 360, duration: 1.8 }, "intro")
+          .to("#heading-center-" + sectionId, { opacity: 1, duration: 1.2 }, "intro+=0.2")
+          .to({}, { duration: 1.4 })
+
+          .addLabel("leftProduct")
+          .to("#arrow-left-" + sectionId,    { opacity: 1, duration: 1.0 }, "leftProduct")
+          .to("#heading-left-" + sectionId,  { opacity: 1, duration: 1.0 }, "leftProduct+=0.15")
+          .to("#product-left-" + sectionId,  { opacity: 1, x: 0, scale: 1, duration: 1.8 }, "leftProduct+=0.2")
+          .to({}, { duration: 1.4 })
+
+          .addLabel("rightProduct")
+          .to("#arrow-right-" + sectionId,    { opacity: 1, duration: 1.0 }, "rightProduct")
+          .to("#heading-right-" + sectionId,  { opacity: 1, duration: 1.0 }, "rightProduct+=0.15")
+          .to("#product-right-1-" + sectionId, { opacity: 1, x: 0, scale: 1, duration: 1.8 }, "rightProduct+=0.2")
+          .to("#product-right-1-" + sectionId, { opacity: 0, scale: 1, y: 0, duration: 1.2 }, "+=0.9")
+          .to("#product-right-2-" + sectionId, { opacity: 1, scale: 1, duration: 1.2 }, "-=0.9")
+          .to("#product-right-2-" + sectionId, { opacity: 0, scale: 1, y: 0, duration: 1.2 }, "+=0.9")
+          .to("#product-right-3-" + sectionId, { opacity: 1, scale: 1, duration: 1.2 }, "-=0.9")
+          .to("#product-right-3-" + sectionId, { opacity: 0, scale: 1, y: 0, duration: 1.2 }, "+=0.9")
+          .to("#product-right-4-" + sectionId, { opacity: 1, scale: 1, duration: 1.2 }, "-=0.9")
+          .to({}, { duration: 1.0 });
+
+        requestAnimationFrame(() => {
+          if (window.ScrollTrigger) ScrollTrigger.refresh(true);
+        });
+      } catch (error) {
+        console.error("Reward section init error:", error);
+        cleanupRewardPinning();
+        revealStatic();
+      }
+    };
+
+    const bootRewardScroll = () => {
+      if (isDesktop()) {
+        loadGsap(() => {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(initRewardScroll);
+          });
+        });
+      } else {
+        cleanupRewardPinning();
+        revealStatic();
+      }
+    };
+
+    const syncResponsiveMode = () => {
+      const nowDesktop = isDesktop();
+      const crossedBreakpoint = _lastBreakpoint !== null && _lastBreakpoint !== nowDesktop;
+      _lastBreakpoint = nowDesktop;
+
+      if (!nowDesktop) {
+        cleanupRewardPinning();
+        revealStatic();
+        if (window.ScrollTrigger) {
+          requestAnimationFrame(() => ScrollTrigger.refresh());
+        }
+        return;
+      }
+
+      // On any breakpoint cross, full reset
+      if (crossedBreakpoint) {
+        _initAttempts = 0;
+        cleanupRewardPinning();
+        if (window.ScrollTrigger) ScrollTrigger.refresh();
+        setTimeout(() => {
+          if (isDesktop() && !rewardTimeline) bootRewardScroll();
+        }, 300);
+        return;
+      }
+
+      // Desktop resize: only refresh if timeline exists
+      if (rewardTimeline && rewardTimeline.scrollTrigger) {
+        requestAnimationFrame(() => {
+          if (window.ScrollTrigger) ScrollTrigger.refresh(true);
+        });
+        return;
+      }
+
+      // First time desktop
+      if (!rewardTimeline) {
+        bootRewardScroll();
+      }
+    };
+
+    let _rt;
+    let _lastWidth = window.innerWidth;
+    window.addEventListener("resize", () => {
+      const currentWidth = window.innerWidth;
+      const widthChanged = Math.abs(currentWidth - _lastWidth) > 50;
+      
+      if (widthChanged) {
+        _lastWidth = currentWidth;
+        clearTimeout(_rt);
+        _rt = window.setTimeout(() => {
+          syncResponsiveMode();
+        }, 300);
+      }
+    });
+
+    window.addEventListener("orientationchange", () => {
+      cleanupRewardPinning();
+      window.setTimeout(syncResponsiveMode, 400);
+    });
+
+    // Visibility change: cleanup if hidden
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && rewardTimeline) {
+        cleanupRewardPinning();
+      }
+    });
+
+    cleanupRewardPinning();
+    revealStatic();
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", syncResponsiveMode, { once: true });
+    } else {
+      syncResponsiveMode();
+    }
+
+    window.addEventListener("load", () => {
+      window.setTimeout(syncResponsiveMode, 150);
+    }, { once: true });
+
+    document.addEventListener("shopify:section:load", (e) => {
+      if (e.detail && e.detail.sectionId === sectionId) {
+        _initAttempts = 0;
+        syncResponsiveMode();
+      }
+    });
+
+    document.addEventListener("shopify:section:unload", (e) => {
+      if (e.detail && e.detail.sectionId === sectionId) {
+        cleanupRewardPinning();
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Matcha Rewards Scroll",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full Width Section",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Order Now Floating Widget"
+    },
+    {
+      "type": "image_picker",
+      "id": "order_now_image",
+      "label": "Order Now product image"
+    },
+    {
+      "type": "url",
+      "id": "order_now_link",
+      "label": "Order Now link"
+    },
+    {
+      "type": "text",
+      "id": "order_now_text",
+      "label": "Order Now button text",
+      "default": "Order Now"
+    },
+    {
+      "type": "header",
+      "content": "Rewards Animation Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "side_image_left",
+      "label": "Side Image Left"
+    },
+    {
+      "type": "image_picker",
+      "id": "side_image_right",
+      "label": "Side Image Right"
+    },
+    {
+      "type": "text",
+      "id": "capsule_subheading",
+      "label": "Capsule Subheading",
+      "default": "How It Works"
+    },
+    {
+      "type": "text",
+      "id": "capsule_heading",
+      "label": "Capsule Heading",
+      "default": "Sip. Earn. Enjoy."
+    },
+    {
+      "type": "image_picker",
+      "id": "partition_image_1",
+      "label": "Partition Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "partition_image_2",
+      "label": "Partition Image 2"
+    },
+    {
+      "type": "text",
+      "id": "left_heading",
+      "label": "Left Heading",
+      "default": "Every $1 Spent"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_left",
+      "label": "Left Image (Drink 1)"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_image_left",
+      "label": "Left Badge Image (=1 Point)"
+    },
+    {
+      "type": "text",
+      "id": "center_heading",
+      "label": "Center Heading",
+      "default": "Earn"
+    },
+    {
+      "type": "image_picker",
+      "id": "center_badge_image",
+      "label": "Center Badge Image (50 Points)",
+      "info": "Upload custom badge image. If not provided, will show text version."
+    },
+    {
+      "type": "text",
+      "id": "center_points_value",
+      "label": "Center Points Value (if no image)",
+      "default": "50"
+    },
+    {
+      "type": "text",
+      "id": "center_points_label",
+      "label": "Center Points Label (if no image)",
+      "default": "points"
+    },
+    {
+      "type": "text",
+      "id": "right_heading",
+      "label": "Right Heading",
+      "default": "Get"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right_1",
+      "label": "Right Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right_2",
+      "label": "Right Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right_3",
+      "label": "Right Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right_4",
+      "label": "Right Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_image_right",
+      "label": "Right Badge Image (Free Drink)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Matcha Rewards Scroll",
+      "category": "Animation"
+    }
+  ]
+}
+{% endschema %}

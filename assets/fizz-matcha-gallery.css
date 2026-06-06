@@ -1,0 +1,130 @@
+/* ============================================================
+   Fizz & Matcha — 5-Column Photo Gallery
+   Figma node 742:648  |  Design canvas: 1920 × 513 px
+   5 images × 357 px wide, gap ~34 px, BG #F5F4EC
+   ============================================================ */
+
+.fmg-section *,
+.fmg-section *::before,
+.fmg-section *::after {
+  box-sizing: border-box;
+}
+
+/* ---- Section wrapper: full-bleed, no side padding ---- */
+.fmg-section {
+  background-color: var(--fmg-bg, #F5F4EC);
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   DESKTOP GRID — 5 equal columns, fixed 513 px height
+   gap 34 px → (1920 - 5×357) / 4 = 135 / 4 ≈ 33.75 px
+   ============================================================ */
+.fmg-inner {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--fmg-gap, 34px);
+  height: var(--fmg-height, 513px);
+}
+
+/* ---- Each image cell ---- */
+.fmg-item {
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.fmg-item img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.fmg-item:hover img {
+  transform: scale(1.04);
+}
+
+/* Placeholder when no image uploaded */
+.fmg-placeholder {
+  position: absolute;
+  inset: 0;
+  background: #d8d6c4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fmg-placeholder svg {
+  width: 50%;
+  height: 50%;
+  opacity: 0.3;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Large desktop 1200–1499 px — keep 5 cols, slightly shorter */
+@media (max-width: 1499px) {
+  .fmg-inner {
+    height: 460px;
+    gap: 28px;
+  }
+}
+
+/* Tablet 992–1199 px — keep 5 cols, reduce height */
+@media (max-width: 1199px) {
+  .fmg-inner {
+    height: 380px;
+    gap: 20px;
+  }
+}
+
+/* Small tablet 768–991 px — 3 columns, aspect-ratio driven */
+@media (max-width: 991px) {
+  .fmg-inner {
+    grid-template-columns: repeat(3, 1fr);
+    height: auto;
+    gap: 16px;
+  }
+  .fmg-item {
+    aspect-ratio: 357 / 513;
+    position: relative;
+  }
+}
+
+/* Mobile ≤ 767 px — 2 columns */
+@media (max-width: 767px) {
+  .fmg-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .fmg-item {
+    aspect-ratio: 357 / 513;
+  }
+  /* 5th item spans full width and uses landscape ratio */
+  .fmg-item:last-child {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* Small mobile ≤ 479 px — 1 column */
+@media (max-width: 479px) {
+  .fmg-inner {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .fmg-item,
+  .fmg-item:last-child {
+    grid-column: auto;
+    aspect-ratio: 4 / 3;
+  }
+}

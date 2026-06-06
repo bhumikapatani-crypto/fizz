@@ -1,0 +1,314 @@
+/* ============================================================
+   Fizz & Matcha — Wholesale / "Offer Better Matcha" Section
+   Figma node 742:653  |  Design canvas: 1920 × 396 px
+   BG #F5F4EC | Left col starts ~155px (~8%) | Right col ~845px (~44%)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Inter:wght@400;600;700&display=swap');
+
+.fmws-section *,
+.fmws-section *::before,
+.fmws-section *::after {
+  box-sizing: border-box;
+}
+
+/* ---- Section wrapper ---- */
+.fmws-section {
+  background-color: var(--fmws-bg, #F5F4EC);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+/* Top border line (matches other sections) */
+.fmws-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--fmws-border-color, #7B9844);
+  z-index: 2;
+}
+
+/* Bottom border line */
+.fmws-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--fmws-border-color, #7B9844);
+  z-index: 2;
+}
+
+/* ---- Inner container — full width, gap grows with viewport ---- */
+.fmws-inner {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 8%;
+  padding-right: 6%;
+  gap: max(80px, 11.9vw);
+}
+
+/* ============================================================
+   LEFT COLUMN — Heading + Button
+   Figma: width ~463px, left start at ~155px
+   ============================================================ */
+.fmws-left {
+  flex: 0 0 auto;
+  width: clamp(300px, 24.1vw, 463px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Heading: Lilita One, 89px, #7B9844, line-height 0.89 */
+.fmws-heading {
+  font-family: 'Lilita One', cursive;
+  font-size: var(--fmws-heading-size, 89px);
+  font-weight: 400;
+  line-height: 0.89;
+  color: var(--fmws-heading-color, #7B9844);
+  margin: 0 0 28px;
+  text-transform: capitalize;
+  word-break: break-word;
+}
+
+/* ---- CTA Button — padding-based width, #7B9844 bg, white, uppercase ---- */
+.fmws-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  background-color: var(--fmws-btn-bg, #7B9844);
+  color: var(--fmws-btn-text, #FFFFFF);
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fmws-btn-size, 15px);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  padding: 0 28px;
+  width: auto;
+  min-width: 300px;
+  height: 52px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  white-space: nowrap;
+}
+
+.fmws-btn:hover {
+  background-color: var(--fmws-btn-hover-bg, #3B5645);
+}
+
+.fmws-btn__arrow {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  transition: transform 0.25s ease;
+}
+
+.fmws-btn:hover .fmws-btn__arrow {
+  transform: translateX(4px);
+}
+
+.fmws-btn__arrow svg {
+  display: block;
+}
+
+/* ============================================================
+   RIGHT COLUMN — Body Text + 2-Column Bullet List
+   Figma: starts at x≈845px from section left, width 938px
+   ============================================================ */
+.fmws-right {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 960px;
+}
+
+/* Intro text block — bold first paragraph */
+.fmws-body {
+  color: var(--fmws-body-color, #3B5645);
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fmws-body-size, 19px);
+  font-weight: 400;
+  line-height: 1.63;
+  margin: 0 0 24px;
+  max-width: 940px;
+}
+
+.fmws-body p {
+  margin: 0 0 6px;
+}
+
+.fmws-body p:last-child {
+  margin-bottom: 0;
+}
+
+.fmws-body-intro {
+  font-weight: 700;
+      color: #3B5645;
+}
+
+/* 2-column bullet list */
+.fmws-bullets {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 40px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 700px;
+}
+
+.fmws-bullets li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--fmws-body-color, #3B5645);
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fmws-body-size, 19px);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Custom green bullet dot */
+.fmws-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--fmws-bullet-color, #7B9844);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Large — scale heading + gap fluidly */
+@media (max-width: 1599px) {
+  .fmws-heading {
+    font-size: clamp(64px, 5.5vw, 89px);
+  }
+  .fmws-inner {
+    gap: max(80px, 10vw);
+  }
+}
+
+/* Desktop Medium — compress layout */
+@media (max-width: 1199px) {
+  .fmws-inner {
+    padding-left: 6%;
+    padding-right: 5%;
+    gap: clamp(60px, 7vw, 120px);
+  }
+  .fmws-heading {
+    font-size: clamp(52px, 5.5vw, 72px);
+    margin-bottom: 24px;
+  }
+  .fmws-left {
+    width: clamp(260px, 26vw, 380px);
+  }
+  .fmws-body {
+    font-size: 17px;
+  }
+  .fmws-bullets li {
+    font-size: 17px;
+  }
+  .fmws-bullets {
+    gap: 8px 24px;
+  }
+}
+
+/* Tablet — stack vertically */
+@media (max-width: 899px) {
+  .fmws-section {
+    padding: 60px 0;
+  }
+  .fmws-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 5%;
+    padding-right: 5%;
+    gap: 28px;
+  }
+  /* dissolve left wrapper so heading and button join the flex flow */
+  .fmws-left {
+    display: contents;
+  }
+  .fmws-heading {
+    order: 1;
+    width: 100%;
+    font-size: clamp(48px, 7vw, 68px);
+  }
+  .fmws-right {
+    order: 2;
+    width: 100%;
+    max-width: 100%;
+  }
+  .fmws-btn {
+    order: 3;
+    min-width: 260px;
+    padding: 0 24px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 599px) {
+  .fmws-section {
+    padding: 48px 0;
+  }
+  .fmws-inner {
+    padding-left: 20px;
+    padding-right: 20px;
+    gap: 28px;
+  }
+  .fmws-heading {
+    font-size: clamp(40px, 9vw, 56px);
+    margin-bottom: 20px;
+  }
+  .fmws-body {
+    font-size: 15px;
+  }
+  .fmws-bullets {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    max-width: 100%;
+  }
+  .fmws-bullets li {
+    font-size: 15px;
+  }
+  .fmws-btn {
+    width: 100%;
+    max-width: 320px;
+    min-width: unset;
+    padding: 0 22px;
+    font-size: 14px;
+  }
+}
+
+/* Very Small Mobile */
+@media (max-width: 400px) {
+  .fmws-heading {
+    font-size: clamp(34px, 10vw, 44px);
+  }
+}

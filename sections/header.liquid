@@ -1,0 +1,449 @@
+{{ 'fizz-matcha-header.css' | asset_url | stylesheet_tag }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- header-area start -->
+<section class="header-kaj fzm-hdr" id="fzm-header">
+  <div class="header-area">
+
+    <!-- ====================================================
+         TOP BAR: Dark green | Left tagline | Center logo | Right icons
+         Figma: 1920×171px  #042611
+         ==================================================== -->
+    <div class="header-main-area">
+      <div class="header-main">
+
+        <!-- Left: tagline image -->
+        <div class="header-element offer-text">
+          {%- if section.settings.tagline_image != blank -%}
+            <img
+              src="{{ section.settings.tagline_image | image_url: width: 240 }}"
+              alt="{{ section.settings.tagline_image_alt | default: shop.name | escape }}"
+              class="fzm-tagline-img"
+              width="{{ section.settings.tagline_image_width }}"
+              loading="eager"
+            >
+          {%- endif -%}
+        </div>
+
+        <!-- Center: Logo -->
+        <div class="header-element logo-wrap">
+          {%- render 'company-logo' -%}
+        </div>
+
+        <!-- Right: Account + Search + Cart icons -->
+        <div class="header-element right-block">
+          {%- render 'header-icon', section: section -%}
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ====================================================
+         NAV BAR: Olive green | Centered navigation
+         Figma: 1920×90px  #7b9844
+         ==================================================== -->
+    <div class="header-bottom-wrap">
+      <div class="menu-rightblock">
+
+        <div class="megamenu-block">
+          <nav class="main-navigation" aria-label="Main navigation">
+            <div class="megamenu-content">
+              <ul class="main-menu">
+                {%- assign header_main_menu = section.settings.header_main_menu -%}
+                {%- for link in linklists[header_main_menu].links -%}
+                  {%- if linklists[header_main_menu].links != blank -%}
+                    {%- render 'main-menu', link: link -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /.header-area -->
+
+  <!-- ====================================================
+       MOBILE MENU PANEL (existing theme functionality)
+       ==================================================== -->
+  <div class="mobile-menu">
+    <div class="main-menu-area">
+      <nav class="main-navigation" aria-label="Mobile navigation">
+        <div class="box-header">
+          <button class="close-box" type="button" aria-label="Close menu">
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
+
+        {%- if section.settings.tagline_image != blank -%}
+          <div class="offer-text">
+            <img
+              src="{{ section.settings.tagline_image | image_url: width: 180 }}"
+              alt="{{ section.settings.tagline_image_alt | default: shop.name | escape }}"
+              class="fzm-tagline-img"
+              loading="lazy"
+            >
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.info_text != blank -%}
+          <div class="header-info-text">
+            <div class="text">{{ section.settings.info_text }}</div>
+          </div>
+        {%- endif -%}
+
+        <div class="megamenu-content">
+          <ul class="main-menu">
+            {%- liquid
+              assign header_main_menu = section.settings.header_main_menu
+              for link in linklists[header_main_menu].links
+                if linklists[header_main_menu].links != blank
+                  render 'main-menu', link: link
+                endif
+              endfor
+            -%}
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+</section>
+
+{%- render 'search-popup-modal' -%}
+{%- render 'mini-cart-drawer' -%}
+
+<!-- Spacer: keeps page content below the fixed header -->
+<div id="fzm-header-spacer" aria-hidden="true" style="display:block;width:100%;"></div>
+
+<script>
+(function () {
+  var header   = document.getElementById('fzm-header');
+  var spacer   = document.getElementById('fzm-header-spacer');
+  var topBarEl = header && header.querySelector('.header-main-area');
+
+  /* ---- Spacer: push page content below the fixed header ---- */
+  function syncSpacer() {
+    if (header && spacer) {
+      /* Spacer always = full header height so page top is never hidden */
+      spacer.style.height = header.offsetHeight + 'px';
+    }
+  }
+
+  /* ---- Sticky nav bar: hide top bar on scroll, keep nav bar ---- */
+  var _ticking = false;
+  function updateScrollState() {
+    if (!header || !topBarEl) return;
+    var topH = topBarEl.offsetHeight;
+    header.style.setProperty('--fzm-topbar-h', '-' + topH + 'px');
+    if (window.scrollY > topH) {
+      header.classList.add('fzm-topbar-hidden');
+    } else {
+      header.classList.remove('fzm-topbar-hidden');
+    }
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!_ticking) {
+      window.requestAnimationFrame(function () {
+        updateScrollState();
+        _ticking = false;
+      });
+      _ticking = true;
+    }
+  }, { passive: true });
+
+  syncSpacer();
+  updateScrollState();
+
+  window.addEventListener('resize', function () {
+    syncSpacer();
+    updateScrollState();
+  });
+
+  window.addEventListener('load', function () {
+    syncSpacer();
+    updateScrollState();
+  });
+
+  /* ---- Cart count: hide when 0, show when items added ---- */
+  var cartEl = document.getElementById('cart-total');
+  if (cartEl) {
+    function syncCount() {
+      var n = parseInt(cartEl.textContent, 10) || 0;
+      cartEl.classList.toggle('fzm-cart-hidden', n === 0);
+    }
+    new MutationObserver(syncCount).observe(cartEl, {
+      childList: true, characterData: true, subtree: true
+    });
+  }
+
+  /* ---- Mobile menu: bind immediately, not after full window load ---- */
+  var menuPanel = header && header.querySelector('.mobile-menu .main-menu-area');
+  var menuToggle = header && header.querySelector('button.navbar-toggle');
+  var menuClose = header && header.querySelector('button.close-box');
+  var cartToggle = header && header.querySelector('.shopping-cart a.cart-count');
+  var cartDrawer = document.querySelector('.mini-cart');
+  var cartClose = document.querySelector('.shopping-cart-close');
+  var lockedScrollY = 0;
+  var pageLocked = false;
+
+  function getOverlay() {
+    return document.querySelector('.mm-fullscreen-bg');
+  }
+
+  function lockPage(open) {
+    if (open) {
+      lockedScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      pageLocked = true;
+      document.documentElement.classList.add('fzm-drawer-open');
+      document.body.classList.add('fzm-drawer-open', 'hidden');
+      document.body.style.top = '-' + lockedScrollY + 'px';
+      return;
+    }
+
+    document.documentElement.classList.remove('fzm-drawer-open');
+    document.body.classList.remove('fzm-drawer-open', 'hidden');
+    document.body.style.top = '';
+    document.querySelectorAll('.mm-fullscreen-bg.active').forEach(function (overlay) {
+      overlay.classList.remove('active');
+    });
+    if (pageLocked) {
+      pageLocked = false;
+      window.scrollTo(0, lockedScrollY);
+    }
+  }
+
+  function setOverlayOpen(open) {
+    var overlay = getOverlay();
+    if (overlay) overlay.classList.toggle('active', open);
+    lockPage(open);
+  }
+
+  function setMenuOpen(open) {
+    if (open && cartDrawer) cartDrawer.classList.remove('show');
+    if (menuPanel) menuPanel.classList.toggle('active', open);
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    setOverlayOpen(open);
+  }
+
+  function setCartOpen(open) {
+    if (open && menuPanel) menuPanel.classList.remove('active');
+    if (menuToggle && open) menuToggle.setAttribute('aria-expanded', 'false');
+    if (cartDrawer) cartDrawer.classList.toggle('show', open);
+    setOverlayOpen(open);
+  }
+
+  function closeDrawers() {
+    if (menuPanel) menuPanel.classList.remove('active');
+    if (cartDrawer) cartDrawer.classList.remove('show');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+    setOverlayOpen(false);
+  }
+
+  closeDrawers();
+
+  if (menuToggle) {
+    menuToggle.addEventListener('click', function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      setMenuOpen(true);
+    });
+  }
+
+  if (menuClose) {
+    menuClose.addEventListener('click', function (event) {
+      event.preventDefault();
+      closeDrawers();
+    });
+  }
+
+  if (cartToggle) {
+    cartToggle.addEventListener('click', function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      setCartOpen(true);
+    });
+  }
+
+  if (cartClose) {
+    cartClose.addEventListener('click', function (event) {
+      event.preventDefault();
+      closeDrawers();
+    });
+  }
+
+  document.addEventListener('click', function (event) {
+    if (event.target && event.target.classList && event.target.classList.contains('mm-fullscreen-bg')) {
+      closeDrawers();
+    }
+  });
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth >= 1200) closeDrawers();
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "paragraph",
+      "content": "Go to Theme Settings → Company Logo to set the header logo image."
+    },
+
+    {
+      "type": "header",
+      "content": "Top Bar"
+    },
+    {
+      "type": "color",
+      "id": "header_top_bg_color",
+      "label": "Top bar background",
+      "default": "#042611"
+    },
+    {
+      "type": "image_picker",
+      "id": "tagline_image",
+      "label": "Left tagline image"
+    },
+    {
+      "type": "text",
+      "id": "tagline_image_alt",
+      "label": "Tagline image alt text",
+      "default": "I need money for Fizz & Matcha"
+    },
+    {
+      "type": "range",
+      "id": "tagline_image_width",
+      "label": "Tagline image width (px)",
+      "min": 60,
+      "max": 260,
+      "step": 4,
+      "default": 160
+    },
+    {
+      "type": "color",
+      "id": "header_top_text_color",
+      "label": "Icon & text color",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "header",
+      "content": "Navigation Bar"
+    },
+    {
+      "type": "color",
+      "id": "header_bottom_bg_color",
+      "label": "Nav bar background",
+      "default": "#7b9844"
+    },
+    {
+      "type": "color",
+      "id": "header_bottom_text_color",
+      "label": "Nav link color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "link_list",
+      "id": "header_main_menu",
+      "label": "Navigation menu"
+    },
+
+    {
+      "type": "header",
+      "content": "Sticky Header"
+    },
+    {
+      "type": "checkbox",
+      "id": "header_sticky_enable",
+      "label": "Sticky header on scroll",
+      "default": true
+    },
+    {
+      "type": "paragraph",
+      "content": "Header sticks to top on index, collection, and product pages."
+    },
+
+    {
+      "type": "header",
+      "content": "Other"
+    },
+    {
+      "type": "richtext",
+      "id": "info_text",
+      "label": "Mobile menu info text"
+    },
+    {
+      "type": "checkbox",
+      "id": "border_enable",
+      "label": "Show border",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "border",
+      "label": "Border width",
+      "min": 0,
+      "max": 2,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#808080"
+    },
+    {
+      "type": "range",
+      "id": "border_color_opacity",
+      "label": "Border opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.1
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  /*
+    Background colors are set in fizz-matcha-header.css using a more-specific
+    selector (1-2-0) which beats this inline block's (1-1-0).
+    Only non-background overrides live here so settings can still customize
+    icon/text colors without conflicting with the Figma background.
+  */
+  #fzm-header a.header-icon,
+  #fzm-header button.header-icon,
+  #fzm-header .navbar-toggle,
+  #fzm-header a.search-btn {
+    color: {{ section.settings.header_top_text_color }} !important;
+  }
+  #fzm-header .header-bottom-wrap .megamenu-content ul.main-menu li.menu-link a.link-title {
+    color: {{ section.settings.header_bottom_text_color }} !important;
+  }
+
+  /* The whole header wrapper is position:sticky so the nav bar
+     must NOT go position:fixed — that causes content overlap and
+     hides the cart/search modals. No sticky rule needed here. */
+
+  {%- if section.settings.border_enable -%}
+    #fzm-header .header-kaj {
+      border-bottom: {{ section.settings.border }}px solid {{ section.settings.border_color | color_modify: 'alpha', section.settings.border_color_opacity }};
+    }
+  {%- endif -%}
+</style>

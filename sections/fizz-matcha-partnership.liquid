@@ -1,0 +1,219 @@
+{{ 'fizz-matcha-partnership.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign bg_color          = section.settings.bg_color
+  assign eyebrow_color     = section.settings.eyebrow_color
+  assign eyebrow_size      = section.settings.eyebrow_size
+  assign heading_color     = section.settings.heading_color
+  assign heading_size      = section.settings.heading_size
+  assign body_color        = section.settings.body_color
+  assign body_size         = section.settings.body_size
+  assign btn_bg            = section.settings.btn_bg_color
+  assign btn_text_color    = section.settings.btn_text_color
+  assign btn_size          = section.settings.btn_font_size
+-%}
+
+<section
+  class="fmp-section"
+  id="fmp-{{ section.id }}"
+  style="
+    --fmp-bg: {{ bg_color }};
+    --fmp-eyebrow-color: {{ eyebrow_color }};
+    --fmp-eyebrow-size: {{ eyebrow_size }}px;
+    --fmp-heading-color: {{ heading_color }};
+    --fmp-heading-size: {{ heading_size }}px;
+    --fmp-body-color: {{ body_color }};
+    --fmp-body-size: {{ body_size }}px;
+    --fmp-btn-bg: {{ btn_bg }};
+    --fmp-btn-text-color: {{ btn_text_color }};
+    --fmp-btn-size: {{ btn_size }}px;
+  "
+  data-section-id="{{ section.id }}"
+>
+  <div class="fmp-inner">
+
+    {%- comment -%}===== EYEBROW ====={%- endcomment -%}
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="fmp-eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+
+    {%- comment -%}===== HEADING ====={%- endcomment -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="fmp-heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- comment -%}===== BODY TEXT ====={%- endcomment -%}
+    {%- if section.settings.body_intro != blank or section.settings.body_text != blank -%}
+      <div class="fmp-body">
+        {%- if section.settings.body_intro != blank -%}
+          <p class="fmp-body-intro">{{ section.settings.body_intro }}</p>
+        {%- endif -%}
+        {%- if section.settings.body_text != blank -%}
+          <p class="fmp-body-text">{{ section.settings.body_text }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%}===== BUTTON ====={%- endcomment -%}
+    {%- if section.settings.btn_label != blank -%}
+      <a
+        href="{{ section.settings.btn_url }}"
+        class="fmp-btn"
+        aria-label="{{ section.settings.btn_label }}"
+      >
+        <span>{{ section.settings.btn_label }}</span>
+        <span class="fmp-btn__arrow" aria-hidden="true">
+          <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.9971 0C13.9971 0.847933 14.8521 2.11412 15.7176 3.17689C16.8304 4.54821 18.1601 5.74469 19.6846 6.65776C20.8277 7.34227 22.2134 7.99936 23.3285 7.99936M23.3285 7.99936C22.2134 7.99936 20.8265 8.65645 19.6846 9.34097C18.1601 10.2552 16.8304 11.4517 15.7176 12.8207C14.8521 13.8846 13.9971 15.1531 13.9971 15.9987M23.3285 7.99936H-2.86102e-06" stroke="white" stroke-width="2"/>
+</svg>
+
+        </span>
+      </a>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Fizz Matcha Partnership",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F5F4EC"
+    },
+    {
+      "type": "header",
+      "content": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Elevated Matcha."
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow Color",
+      "default": "#042611"
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "label": "Eyebrow Font Size",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Seamlessly Integrated."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#7B9844"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 40,
+      "max": 120,
+      "step": 1,
+      "unit": "px",
+      "default": 89
+    },
+    {
+      "type": "header",
+      "content": "Body Text"
+    },
+    {
+      "type": "textarea",
+      "id": "body_intro",
+      "label": "Bold Intro Paragraph",
+      "default": "A refined beverage program designed for modern wellness spaces."
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body Paragraphs (Enter for new line)",
+      "default": "We partner with Pilates, yoga, and wellness studios to introduce a premium matcha experience without operational complexity.\nOur program is intentionally minimal: we supply the essentials, you deliver the experience.\nEach serving is crafted from ceremonial-grade Uji matcha, paired with signature syrups and cold foams."
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body Text Color",
+      "default": "#3B5645"
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body Font Size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Text",
+      "default": "Apply for Partnership"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_color",
+      "label": "Button Background",
+      "default": "#7B9844"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "btn_font_size",
+      "label": "Button Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fizz Matcha Partnership"
+    }
+  ]
+}
+{% endschema %}

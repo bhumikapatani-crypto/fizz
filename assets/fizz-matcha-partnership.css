@@ -1,0 +1,221 @@
+/* ============================================================
+   Fizz & Matcha — Partnership / Centered Text Section
+   Figma node 742:651  |  Design canvas: 1920 × 648 px
+   BG #F5F4EC | Content max-width 956 px | vertical padding 106 px
+   ============================================================ */
+
+.fmp-section *,
+.fmp-section *::before,
+.fmp-section *::after {
+  box-sizing: border-box;
+}
+
+/* ---- Section wrapper ---- */
+.fmp-section {
+  background-color: var(--fmp-bg, #F5F4EC);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  min-height: 648px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 106px 24px;
+}
+
+/* ---- Inner content block: 956 px wide, centered ---- */
+.fmp-inner {
+  width: 100%;
+  max-width: 956px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ============================================================
+   EYEBROW  — Inter Bold 24 / 31.2 px, rgba(4,38,17,0.78)
+   ============================================================ */
+.fmp-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fmp-eyebrow-size, 24px);
+  font-weight: 700;
+  line-height: 1.3;
+  color: #042611C7;
+  margin: 0 0 11px;   /* Figma gap to heading: 11 px */
+}
+.fmp-body p{
+  color:#3B5645;
+}
+/* ============================================================
+   HEADING  — Lilita One 89 / 79 px, #7B9844, capitalize
+   ============================================================ */
+.fmp-heading {
+  font-family: 'Lilita One', cursive;
+  font-size: var(--fmp-heading-size, 89px);
+  font-weight: 400;
+  line-height: 0.888;   /* 79 / 89 Figma ratio */
+  color: var(--fmp-heading-color, #7B9844);
+  text-transform: capitalize;
+  margin: 0 0 59px;   /* Figma gap to body: 59 px */
+  word-break: break-word;
+}
+
+/* ============================================================
+   BODY  — Inter 19 / 31 px, #3B5645, centered
+   ============================================================ */
+.fmp-body {
+  width: 100%;
+  max-width: 956px;
+  color: var(--fmp-body-color, #3B5645);
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fmp-body-size, 19px);
+  font-weight: 400;
+  line-height: 1.63;
+  margin: 0 0 59px;   /* Figma gap to button: 59 px */
+}
+
+/* Bold intro paragraph */
+.fmp-body-intro {
+  font-weight: 700;
+  margin: 0 0 8px;   /* Figma paragraph spacing */
+}
+
+/* Regular paragraphs */
+.fmp-body-text {
+  white-space: pre-line;  /* respects \n in textarea */
+  margin: 0;
+}
+
+/* ============================================================
+   BUTTON  — 301 × 49 px, #7B9844, white uppercase + arrow
+   ============================================================ */
+.fmp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background-color: var(--fmp-btn-bg, #7B9844);
+  color: var(--fmp-btn-text-color, #FFFFFF);
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fmp-btn-size, 19px);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  padding: 0 22px;
+  min-width: 301px;
+  height: 49px;
+  justify-content: space-between;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.fmp-btn:hover {
+  background-color: #3B5645;
+  color: #FFFFFF;
+}
+
+.fmp-btn__arrow {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.fmp-btn__arrow svg {
+  display: block;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* 1200–1499 px */
+@media (max-width: 1499px) {
+  .fmp-section {
+    min-height: 580px;
+    padding: 90px 40px;
+  }
+  .fmp-heading {
+    font-size: 72px;
+  }
+}
+
+/* Tablet 992–1199 px */
+@media (max-width: 1199px) {
+  .fmp-section {
+    min-height: 500px;
+    padding: 80px 40px;
+  }
+  .fmp-heading {
+    font-size: 60px;
+    margin-bottom: 44px;
+  }
+  .fmp-body {
+    font-size: 17px;
+    margin-bottom: 44px;
+  }
+}
+
+/* Small tablet 768–991 px */
+@media (max-width: 991px) {
+  .fmp-section {
+    padding: 70px 32px;
+    min-height: unset;
+  }
+  .fmp-heading {
+    font-size: 52px;
+    margin-bottom: 36px;
+  }
+  .fmp-eyebrow {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .fmp-body {
+    font-size: 16px;
+    margin-bottom: 36px;
+  }
+  .fmp-btn {
+    min-width: 260px;
+    font-size: 16px;
+  }
+}
+
+/* Mobile ≤ 767 px */
+@media (max-width: 767px) {
+  .fmp-section {
+    padding: 56px 20px;
+  }
+  .fmp-heading {
+    font-size: 42px;
+    line-height: 0.9;
+    margin-bottom: 28px;
+  }
+  .fmp-eyebrow {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .fmp-body {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+  .fmp-btn {
+    min-width: 240px;
+    font-size: 15px;
+    height: 46px;
+  }
+}
+
+/* Small mobile ≤ 479 px */
+@media (max-width: 479px) {
+  .fmp-heading {
+    font-size: 34px;
+    margin-bottom: 24px;
+  }
+  .fmp-btn {
+    min-width: unset;
+    width: 100%;
+    max-width: 320px;
+  }
+}

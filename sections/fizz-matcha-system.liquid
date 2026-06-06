@@ -1,0 +1,526 @@
+{{ 'fizz-matcha-system.css' | asset_url | stylesheet_tag }}
+
+<style>
+  /* Global horizontal scroll fix — injected once via this section */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+  }
+  * { max-width: 100%; }
+  img, video, iframe, svg { max-width: 100%; }
+</style>
+
+{%- liquid
+  assign top_bg          = section.settings.top_bg_color
+  assign h1_color        = section.settings.heading1_color
+  assign h1_size         = section.settings.heading1_size
+  assign body1_color     = section.settings.body1_color
+  assign body1_size      = section.settings.body1_size
+  assign list_h_color    = section.settings.list_heading_color
+  assign list_h_size     = section.settings.list_heading_size
+  assign list_color      = section.settings.list_item_color
+  assign list_size       = section.settings.list_item_size
+  assign h2_color        = section.settings.heading2_color
+  assign h2_size         = section.settings.heading2_size
+  assign body2_color     = section.settings.body2_color
+  assign body2_size      = section.settings.body2_size
+  assign btn_bg          = section.settings.btn_bg_color
+  assign btn_color       = section.settings.btn_text_color
+  assign btn_hover       = section.settings.btn_hover_color
+  assign btn_size        = section.settings.btn_font_size
+  assign off_h_color     = section.settings.offerings_heading_color
+  assign off_color       = section.settings.offerings_item_color
+-%}
+
+{%- comment -%}===== MATCHA LEAF SVG BULLET (from Figma node 742:319) ====={%- endcomment -%}
+{%- capture leaf_icon -%}
+<svg width="28" height="23" viewBox="0 0 28 23" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M3.51579 12.1068C3.06263 13.5613 3.02427 15.0981 3.10819 16.6619C3.27203 18.8552 3.79952 20.9387 4.59475 22.9998C4.40053 22.9944 4.09123 22.9737 3.93059 22.8407C2.74934 21.8627 1.78228 20.708 1.04779 19.3972C0.022387 17.5652 -0.250148 15.5632 0.229386 13.5452C0.588237 12.0353 0.968668 10.5961 1.4466 9.11538L2.66462 4.98542C3.06423 3.34558 3.28402 1.75341 3.29361 -0.000976562C5.2629 2.51605 6.96524 5.36059 7.89634 8.36273C8.2488 9.49977 8.40384 10.6199 8.37188 11.8146C8.27757 15.3449 7.08033 19.3434 5.83194 22.67C5.7696 22.836 5.69528 22.9321 5.51705 22.9329C4.65948 20.8295 4.01371 18.7084 3.66125 16.4789C3.41669 15.0174 3.39032 13.6405 3.51499 12.106Z" fill="#7B9844"/>
+  <path d="M10.0699 18.7087C9.03567 19.775 8.01027 20.7253 6.81543 21.6224C7.39167 20.011 7.88479 18.4589 8.16612 16.7967C8.77353 15.4875 9.56716 14.332 10.5878 13.3018C11.4086 12.4469 12.3509 11.8295 13.413 11.2829C14.8332 10.5526 16.1871 9.80608 17.553 8.99039C18.3378 8.5222 19.0412 8.02479 19.7653 7.48586L20.7707 6.54102C19.5966 10.8516 17.4475 15.0962 14.2714 18.2828C12.2845 20.2763 9.94119 21.8538 7.17668 22.7149C8.13175 21.8792 8.97653 21.0389 9.78375 20.071C11.3334 18.2121 12.7465 16.2916 14.0348 14.2305C12.7185 15.7581 11.5061 17.2641 10.0683 18.7087Z" fill="#7B9844"/>
+  <path d="M11.172 21.4427C12.2622 20.9076 13.1597 20.2241 14.0197 19.4169C15.4639 18.8257 16.8345 18.1945 18.206 17.4603C19.0484 16.9529 19.9043 16.5208 20.6205 15.8374C18.8598 16.8199 17.1135 17.6909 15.1458 18.2391C16.3358 16.8038 17.3061 15.3438 18.2595 13.8108C19.898 13.8624 21.4445 13.5733 22.9534 13.0244C24.8076 12.3455 26.442 11.3638 28.0005 10.1406C26.5867 13.5495 23.1876 16.6869 20.1018 18.7603C16.7122 21.0375 12.1295 22.4113 8.00391 22.9995Z" fill="#566D29"/>
+</svg>
+{%- endcapture -%}
+
+<section
+  class="fss-section"
+  id="fss-{{ section.id }}"
+  style="
+    --fss-top-bg: {{ top_bg }};
+    --fss-h1-color: {{ h1_color }};
+    --fss-h1-size: {{ h1_size }}px;
+    --fss-body1-color: {{ body1_color }};
+    --fss-body1-size: {{ body1_size }}px;
+    --fss-list-h-color: {{ list_h_color }};
+    --fss-list-h-size: {{ list_h_size }}px;
+    --fss-list-color: {{ list_color }};
+    --fss-list-size: {{ list_size }}px;
+    --fss-h2-color: {{ h2_color }};
+    --fss-h2-size: {{ h2_size }}px;
+    --fss-body2-color: {{ body2_color }};
+    --fss-body2-size: {{ body2_size }}px;
+    --fss-btn-bg: {{ btn_bg }};
+    --fss-btn-color: {{ btn_color }};
+    --fss-btn-hover: {{ btn_hover }};
+    --fss-btn-size: {{ btn_size }}px;
+    --fss-off-h-color: {{ off_h_color }};
+    --fss-off-color: {{ off_color }};
+  "
+  data-section-id="{{ section.id }}"
+>
+
+  {%- comment -%}======================================================
+    PANEL 1 — Dark Green: Heading + We Provide + You Provide
+  ======================================================{%- endcomment -%}
+  <div class="fss-top">
+    <div class="fss-top-inner">
+
+      {%- comment -%}--- LEFT: Intro heading + body ---{%- endcomment -%}
+      <div class="fss-intro">
+        {%- if section.settings.top_heading != blank -%}
+          <h2 class="fss-intro-heading">{{ section.settings.top_heading | newline_to_br }}</h2>
+        {%- endif -%}
+        {%- if section.settings.top_body != blank -%}
+          <p class="fss-intro-body">{{ section.settings.top_body }}</p>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%}--- RIGHT: We Provide + You Provide columns ---{%- endcomment -%}
+      <div class="fss-lists">
+
+        {%- comment -%} WE PROVIDE {%- endcomment -%}
+        {%- assign we_blocks = section.blocks | where: 'type', 'we_provide' -%}
+        {%- assign we_count  = we_blocks | size -%}
+        <div class="fss-list-col">
+          {%- if section.settings.we_provide_title != blank -%}
+            <h3 class="fss-list-heading">{{ section.settings.we_provide_title }}</h3>
+          {%- endif -%}
+          <ul class="fss-list-ul{% if section.settings.list_divider_svg != blank %} fss-list-ul--svg-divider{% endif %}">
+            {%- assign we_idx = 0 -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'we_provide' -%}
+                {%- assign we_idx = we_idx | plus: 1 -%}
+                <li class="fss-list-item" {{ block.shopify_attributes }}>
+                  <span class="fss-icon">{{ leaf_icon }}</span>
+                  <span class="fss-list-text">{{ block.settings.item }}</span>
+                </li>
+                {%- if section.settings.list_divider_svg != blank and we_idx < we_count -%}
+                  <li class="fss-list-divider-item" aria-hidden="true">{{ section.settings.list_divider_svg }}</li>
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+
+        {%- comment -%} YOU PROVIDE {%- endcomment -%}
+        {%- assign yp_blocks = section.blocks | where: 'type', 'you_provide' -%}
+        {%- assign yp_count  = yp_blocks | size -%}
+        <div class="fss-list-col">
+          {%- if section.settings.you_provide_title != blank -%}
+            <h3 class="fss-list-heading">{{ section.settings.you_provide_title }}</h3>
+          {%- endif -%}
+          <ul class="fss-list-ul{% if section.settings.list_divider_svg != blank %} fss-list-ul--svg-divider{% endif %}">
+            {%- assign yp_idx = 0 -%}
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'you_provide' -%}
+                {%- assign yp_idx = yp_idx | plus: 1 -%}
+                <li class="fss-list-item" {{ block.shopify_attributes }}>
+                  <span class="fss-icon">{{ leaf_icon }}</span>
+                  <span class="fss-list-text">{{ block.settings.item }}</span>
+                </li>
+                {%- if section.settings.list_divider_svg != blank and yp_idx < yp_count -%}
+                  <li class="fss-list-divider-item" aria-hidden="true">{{ section.settings.list_divider_svg }}</li>
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%}======================================================
+    PANEL 2 — Sky BG + Product Image + Matcha Refined + Offerings
+  ======================================================{%- endcomment -%}
+  <div class="fss-bottom">
+
+    {%- comment -%}--- Sky / cloud background ---{%- endcomment -%}
+    {%- if section.settings.sky_image != blank -%}
+      {%- assign sky_alt = section.settings.sky_image.alt | escape -%}
+      {{ section.settings.sky_image | image_url: width: 1920 | image_tag: class: 'fss-sky-bg', loading: 'lazy', alt: sky_alt }}
+    {%- else -%}
+      <div class="fss-sky-bg" style="background: linear-gradient(180deg, #cde6f5 0%, #f0f8ff 100%);"></div>
+    {%- endif -%}
+
+    <div class="fss-bottom-inner">
+
+      {%- comment -%}--- LEFT: Matcha Refined heading + body + button ---{%- endcomment -%}
+      <div class="fss-left-text">
+        {%- if section.settings.bottom_heading != blank -%}
+          <h2 class="fss-bottom-heading">{{ section.settings.bottom_heading | newline_to_br }}</h2>
+        {%- endif -%}
+        {%- if section.settings.bottom_body_rt != blank -%}
+          <div class="fss-bottom-body">{{ section.settings.bottom_body_rt }}</div>
+        {%- endif -%}
+        {%- if section.settings.btn_label != blank -%}
+          <a href="{{ section.settings.btn_url }}" class="fss-btn">
+            <span>{{ section.settings.btn_label }}</span>
+            <span class="fss-btn__arrow" aria-hidden="true">
+           <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.9971 0C13.9971 0.847933 14.8521 2.11412 15.7176 3.17689C16.8303 4.54821 18.1601 5.74469 19.6846 6.65776C20.8277 7.34227 22.2134 7.99936 23.3285 7.99936M23.3285 7.99936C22.2134 7.99936 20.8265 8.65645 19.6846 9.34097C18.1601 10.2552 16.8303 11.4517 15.7176 12.8207C14.8521 13.8846 13.9971 15.1531 13.9971 15.9987M23.3285 7.99936H-1.81198e-05" stroke="white" stroke-width="2"/>
+</svg>
+
+            </span>
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%}--- CENTER: Product image ---{%- endcomment -%}
+      <div class="fss-product">
+        {%- if section.settings.product_image != blank -%}
+          {%- assign prod_alt = section.settings.product_image.alt | escape -%}
+          {{ section.settings.product_image | image_url: width: 800 | image_tag: class: 'fss-product-img', loading: 'lazy', alt: prod_alt }}
+        {%- else -%}
+          <div class="fss-product-placeholder"></div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%}--- RIGHT: Offerings ---{%- endcomment -%}
+      <div class="fss-offerings">
+        {%- if section.settings.offerings_title != blank -%}
+          <h3 class="fss-offerings-heading">{{ section.settings.offerings_title }}</h3>
+        {%- endif -%}
+        {%- assign off_blocks = section.blocks | where: 'type', 'offering' -%}
+        {%- assign off_count  = off_blocks | size -%}
+        <ul class="fss-offerings-ul{% if section.settings.offerings_divider_svg != blank %} fss-offerings-ul--svg-divider{% endif %}">
+          {%- assign off_idx = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'offering' -%}
+              {%- assign off_idx = off_idx | plus: 1 -%}
+              <li class="fss-offerings-item" {{ block.shopify_attributes }}>
+                <span class="fss-offerings-text">{{ block.settings.item }}</span>
+              </li>
+              {%- if section.settings.offerings_divider_svg != blank and off_idx < off_count -%}
+                <li class="fss-offerings-divider-item" aria-hidden="true">{{ section.settings.offerings_divider_svg }}</li>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Fizz Matcha System",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Panel 1 — Dark Green Background"
+    },
+    {
+      "type": "color",
+      "id": "top_bg_color",
+      "label": "Background Color",
+      "default": "#042611"
+    },
+    {
+      "type": "header",
+      "content": "Panel 1 — Intro (Left Column)"
+    },
+    {
+      "type": "textarea",
+      "id": "top_heading",
+      "label": "Heading",
+      "default": "A Simple System\nThat Works"
+    },
+    {
+      "type": "color",
+      "id": "heading1_color",
+      "label": "Heading Color",
+      "default": "#7B9844"
+    },
+    {
+      "type": "range",
+      "id": "heading1_size",
+      "label": "Heading Font Size",
+      "min": 40,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "textarea",
+      "id": "top_body",
+      "label": "Body Text",
+      "default": "Built specifically for wellness environments, the Fizz & Matcha beverage program is designed to integrate easily into existing spaces.\nNo complicated equipment. No operational friction. Just a clean, high-margin offering customers already want."
+    },
+    {
+      "type": "color",
+      "id": "body1_color",
+      "label": "Body Text Color",
+      "default": "#C8CFCB"
+    },
+    {
+      "type": "range",
+      "id": "body1_size",
+      "label": "Body Font Size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    },
+    {
+      "type": "header",
+      "content": "Panel 1 — List Column Styles"
+    },
+    {
+      "type": "color",
+      "id": "list_heading_color",
+      "label": "List Heading Color",
+      "default": "#7B9844"
+    },
+    {
+      "type": "range",
+      "id": "list_heading_size",
+      "label": "List Heading Size",
+      "min": 20,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "list_item_color",
+      "label": "List Item Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "list_item_size",
+      "label": "List Item Font Size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "html",
+      "id": "list_divider_svg",
+      "label": "List item divider SVG",
+      "info": "Paste <svg>...</svg> code to replace the border line between items. Leave empty to keep the default border."
+    },
+    {
+      "type": "text",
+      "id": "we_provide_title",
+      "label": "\"We Provide\" Heading",
+      "default": "We Provide"
+    },
+    {
+      "type": "text",
+      "id": "you_provide_title",
+      "label": "\"You Provide\" Heading",
+      "default": "You Provide"
+    },
+    {
+      "type": "header",
+      "content": "Panel 2 — Sky Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "sky_image",
+      "label": "Sky / Background Image",
+      "info": "Recommended: 1920 × 683 px"
+    },
+    {
+      "type": "header",
+      "content": "Panel 2 — Product Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product Image",
+      "info": "Recommended: 705 × 758 px"
+    },
+    {
+      "type": "header",
+      "content": "Panel 2 — Matcha Refined (Left Text)"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_heading",
+      "label": "Heading",
+      "default": "Matcha,\nRefined."
+    },
+    {
+      "type": "color",
+      "id": "heading2_color",
+      "label": "Heading Color",
+      "default": "#7B9844"
+    },
+    {
+      "type": "range",
+      "id": "heading2_size",
+      "label": "Heading Font Size",
+      "min": 40,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "richtext",
+      "id": "bottom_body_rt",
+      "label": "Body Text",
+      "default": "<p>Our matcha is sourced from Uji, Japan—the birthplace of premium matcha. Grown with care, crafted for purity.</p><ul><li>Freshness Sealed</li><li>Light Protected</li><li>Ritual Ready</li><li>Sourced From Uji</li></ul>"
+    },
+    {
+      "type": "color",
+      "id": "body2_color",
+      "label": "Body Text Color",
+      "default": "#3B5645"
+    },
+    {
+      "type": "range",
+      "id": "body2_size",
+      "label": "Body Font Size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Text",
+      "default": "Shop Matcha"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_color",
+      "label": "Button Background",
+      "default": "#7B9844"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "btn_hover_color",
+      "label": "Button Hover Color",
+      "default": "#042611"
+    },
+    {
+      "type": "range",
+      "id": "btn_font_size",
+      "label": "Button Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    },
+    {
+      "type": "header",
+      "content": "Panel 2 — Offerings (Right Column)"
+    },
+    {
+      "type": "text",
+      "id": "offerings_title",
+      "label": "Offerings Heading",
+      "default": "Offerings"
+    },
+    {
+      "type": "html",
+      "id": "offerings_divider_svg",
+      "label": "Offerings divider SVG",
+      "info": "Paste <svg>...</svg> code to replace the border line between offering items. Leave empty to keep the default border."
+    },
+    {
+      "type": "color",
+      "id": "offerings_heading_color",
+      "label": "Offerings Heading Color",
+      "default": "#042611"
+    },
+    {
+      "type": "color",
+      "id": "offerings_item_color",
+      "label": "Offerings Item Color",
+      "default": "#042611"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "we_provide",
+      "name": "We Provide Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "item",
+          "label": "Item Text",
+          "default": "Premium Ceremonial Matcha"
+        }
+      ]
+    },
+    {
+      "type": "you_provide",
+      "name": "You Provide Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "item",
+          "label": "Item Text",
+          "default": "Milk"
+        }
+      ]
+    },
+    {
+      "type": "offering",
+      "name": "Offering Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "item",
+          "label": "Item Text",
+          "default": "40g Signature Tins"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fizz Matcha System",
+      "blocks": [
+        { "type": "we_provide", "settings": { "item": "Premium Ceremonial Matcha" } },
+        { "type": "we_provide", "settings": { "item": "House-made fruit syrups" } },
+        { "type": "we_provide", "settings": { "item": "Signature cold foams" } },
+        { "type": "we_provide", "settings": { "item": "Training & preparation system" } },
+        { "type": "you_provide", "settings": { "item": "Milk" } },
+        { "type": "you_provide", "settings": { "item": "Ice" } },
+        { "type": "you_provide", "settings": { "item": "Cups & lids" } },
+        { "type": "you_provide", "settings": { "item": "Staff to prepare drinks" } },
+        { "type": "you_provide", "settings": { "item": "Small counter space" } },
+        { "type": "offering", "settings": { "item": "40g Signature Tins" } },
+        { "type": "offering", "settings": { "item": "Seasonal Selections" } },
+        { "type": "offering", "settings": { "item": "Limited Drops" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

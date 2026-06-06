@@ -1,0 +1,521 @@
+/* ============================================================
+   Fizz & Matcha Header — Figma node 738:99
+   Top bar: dark green #042611  |  Nav bar: olive green #7b9844
+   Breakpoint: 1199px (mobile) / 1200px+ (desktop)
+   ============================================================ */
+
+/* ---- Scoped reset ---- */
+.header-kaj.fzm-hdr *,
+.header-kaj.fzm-hdr *::before,
+.header-kaj.fzm-hdr *::after {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   CART DRAWER + SEARCH MODAL z-index fixes
+   The mini-cart drawer has z-index:10 (buried under everything).
+   Bootstrap modals have z-index 1055/1060.
+   Header is z-index:200. All drawers/modals must be above 200.
+   ============================================================ */
+.mini-cart {
+  z-index: 500 !important;
+}
+/* Bootstrap modal backdrop and modal are already 1055/1060 — fine */
+/* Ensure search modal content is above header */
+#seachmodal {
+  z-index: 600 !important;
+}
+.modal-backdrop {
+  z-index: 550 !important;
+}
+
+html.fzm-drawer-open,
+body.fzm-drawer-open {
+  overflow: hidden !important;
+  overscroll-behavior: none !important;
+}
+
+body.fzm-drawer-open {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  touch-action: none !important;
+}
+
+.mm-fullscreen-bg.active {
+  z-index: 150 !important;
+}
+
+.mm-fullscreen-bg {
+  pointer-events: none !important;
+}
+
+html.fzm-drawer-open .mm-fullscreen-bg.active,
+body.fzm-drawer-open .mm-fullscreen-bg.active {
+  pointer-events: auto !important;
+}
+
+.mini-cart {
+  z-index: 800 !important;
+}
+
+/* ============================================================
+   STICKY WRAPPER
+   On scroll: the whole fixed header shifts up by the top-bar
+   height (set via JS as --fzm-topbar-h), leaving only the
+   olive nav bar visible at the top.
+   ============================================================ */
+.header-kaj.fzm-hdr {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  width: 100%;
+  transition: top 0.25s ease;
+}
+
+.header-kaj.fzm-hdr.fzm-topbar-hidden {
+  top: var(--fzm-topbar-h, -170px);
+}
+
+/* ============================================================
+   BACKGROUND COLORS
+   Use specificity 1-2-0 (#id + .class + .class) to beat the
+   inline <style> block which only has 1-1-0 (#id + .class).
+   This ensures the Figma colors always apply even when old
+   theme settings are saved.
+   ============================================================ */
+#fzm-header.header-kaj .header-area .header-main-area {
+  background-color: #042611 !important;
+  border-bottom: none !important;
+  padding: 0 !important;
+}
+
+#fzm-header.header-kaj .header-area .header-bottom-wrap {
+  background-color: #7b9844 !important;
+  border-top: none !important;
+  padding: 0 !important;
+}
+
+/* ============================================================
+   DESKTOP (≥1200px): 3-column grid layout
+   ============================================================ */
+@media (min-width: 1200px) {
+
+  /* Replace old float/width layout with CSS grid */
+  .fzm-hdr .header-main {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 1920px !important;
+    margin: 0 auto !important;
+    padding: 28px clamp(40px, 6.2%, 120px) !important;  /* top/bottom padding so nothing is cramped */
+    height: auto !important;
+    min-height: 110px !important;
+    gap: 24px !important;
+    float: none !important;
+  }
+
+  /* Reset widths set by the original theme CSS */
+  .fzm-hdr .header-main .header-element {
+    width: auto !important;
+    float: none !important;
+    padding: 0 !important;
+  }
+
+  /* Col 1: Left tagline image */
+  .fzm-hdr .header-main .offer-text {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  /* Col 2: Logo centered */
+  .fzm-hdr .header-main .logo-wrap {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    text-align: center !important;
+  }
+
+  /* Col 3: Icons — the theme hides this on desktop, force it visible */
+  .fzm-hdr .header-main .header-element.right-block {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    width: auto !important;
+  }
+
+  /* Remove the old inline search bar (search icon opens the modal instead) */
+  .fzm-hdr .header-main .search-wrap.header-element {
+    display: none !important;
+  }
+
+  /* Show search ICON inside the icons list on desktop */
+  .fzm-hdr .right-block ul.shop-element li.side-wrap.search-wrap {
+    display: flex !important;
+  }
+
+  /* Hide hamburger on desktop */
+  .fzm-hdr .right-block ul.shop-element li.side-wrap.toggle-wrap {
+    display: none !important;
+  }
+
+}
+
+/* ============================================================
+   TAGLINE IMAGE
+   ============================================================ */
+.fzm-hdr .offer-text .fzm-tagline-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: 90px;   /* constrained so it never overflows the top bar */
+  max-width: 200px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* ============================================================
+   LOGO
+   ============================================================ */
+.fzm-hdr .logo-wrap a img,
+.fzm-hdr .logo-wrap img {
+  max-height: 64px;
+  width: auto;
+  display: block;
+}
+
+/* ============================================================
+   ICONS — white color
+   ============================================================ */
+.fzm-hdr .right-block a.header-icon,
+.fzm-hdr .right-block button.header-icon,
+.fzm-hdr .right-block a.search-btn,
+.fzm-hdr .right-block .navbar-toggle {
+  color: #ffffff !important;
+}
+
+.fzm-hdr .right-block a.header-icon i,
+.fzm-hdr .right-block a.search-btn i,
+.fzm-hdr .right-block .navbar-toggle i {
+  color: #ffffff !important;
+  font-size: 20px !important;
+}
+
+.fzm-hdr .right-block a.header-icon:hover,
+.fzm-hdr .right-block a.search-btn:hover,
+.fzm-hdr .right-block button.header-icon:hover {
+  opacity: 0.75;
+  color: #ffffff !important;
+}
+
+/* Icon spacing — reduce the theme's 40px gap to something tighter */
+.fzm-hdr .right-block ul.shop-element li.side-wrap {
+  margin-left: 18px !important;
+}
+.fzm-hdr .right-block ul.shop-element li.side-wrap:first-child {
+  margin-left: 0 !important;
+}
+
+/* Cart count bubble */
+.fzm-hdr .right-block ul.shop-element li.side-wrap a.header-icon span.count {
+  background-color: #7b9844 !important;
+  color: #ffffff !important;
+}
+
+/* Hide cart count when 0 — set by Liquid on page load, JS keeps it in sync for AJAX */
+#cart-total.fzm-cart-hidden {
+  display: none !important;
+}
+
+/* ============================================================
+   NAV BAR — olive green, centered
+   ============================================================ */
+
+/* Center the nav links + top/bottom breathing room */
+.fzm-hdr .header-bottom-wrap .menu-rightblock {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 1920px !important;
+  margin: 0 auto !important;
+  padding: 18px clamp(40px, 6.2%, 120px) !important;
+}
+
+/* Hide the duplicate icons + info text from nav bar */
+.fzm-hdr .header-bottom-wrap .info-text-main,
+.fzm-hdr .header-bottom-wrap .right-block.desk {
+  display: none !important;
+}
+
+/* Megamenu block takes natural width (not 50%) */
+.fzm-hdr .header-bottom-wrap .megamenu-block {
+  width: auto !important;
+}
+
+/* Nav list: horizontal, centered */
+.fzm-hdr .header-bottom-wrap .megamenu-content ul.main-menu {
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* Nav item spacing — gap between pills */
+.fzm-hdr .header-bottom-wrap .megamenu-content ul.main-menu {
+  gap: 113px !important;
+}
+
+.fzm-hdr .header-bottom-wrap .megamenu-content ul.main-menu li.menu-link {
+  margin-right: 0 !important;
+}
+
+/* ---- Nav link: desktop visible version (.link-title) ---- */
+.fzm-hdr .header-bottom-wrap .megamenu-content ul.main-menu li.menu-link a.link-title {
+  display: flex !important;
+  align-items: center !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  color: #ffffff !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  padding: 12px 18px !important;
+  border-radius: 100px !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+  transition: background-color 0.18s ease !important;
+}
+
+/* ---- CRITICAL FIX: hide the mobile accordion duplicate link on desktop ---- */
+/* main-menu.liquid renders TWO <a> per item: .link-title (desktop) and .link-title.link-title-lg (mobile)
+   My rule above matched BOTH — this explicitly hides the mobile version */
+.fzm-hdr .header-bottom-wrap .megamenu-content ul.main-menu li.menu-link a.link-title.link-title-lg {
+  display: none !important;
+}
+
+/* Hover */
+.fzm-hdr .header-bottom-wrap .megamenu-content ul.main-menu li.menu-link a.link-title:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+}
+
+/* ---- Active nav link: frosted pill (Figma style) ---- */
+.fzm-hdr .header-bottom-wrap .megamenu-content ul.main-menu li.menu-link a.link-title.active,
+.fzm-hdr .header-bottom-wrap .megamenu-content ul.main-menu li.menu-link a.link-title[aria-current="page"] {
+  background: rgba(0, 0, 0, 0.22) !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.16), inset 0 0 0 1px rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Dropdown colors */
+.fzm-hdr .header-bottom-wrap .megamenu-content ul.main-menu li.menu-link ul.dropdown-submenu {
+  background-color: #042611 !important;
+  border-top: 2px solid #7b9844 !important;
+}
+
+.fzm-hdr .header-bottom-wrap .megamenu-content ul.main-menu li.menu-link ul.dropdown-submenu a {
+  color: #ffffff !important;
+}
+
+.fzm-hdr .header-bottom-wrap .megamenu-content ul.main-menu li.menu-link ul.dropdown-submenu a:hover {
+  color: #b8d654 !important;
+}
+
+/* ============================================================
+   MOBILE (≤1199px)
+   Layout: [hamburger LEFT] [logo CENTER] [account+cart RIGHT]
+   ============================================================ */
+@media (max-width: 1199px) {
+
+  /* 3-zone flex row with proper top/bottom padding */
+  .fzm-hdr .header-main {
+    display: flex !important;
+    align-items: center !important;
+    height: auto !important;
+    grid-template-columns: unset !important;
+    max-width: unset !important;
+    gap: 0 !important;
+    padding: 22px 20px !important;   /* generous top + bottom so it doesn't feel cramped */
+    position: relative !important;   /* anchor for the hamburger absolute trick */
+  }
+
+  /* Hide nav bar (mobile-menu panel is used instead) */
+  .fzm-hdr .header-bottom-wrap {
+    display: none !important;
+  }
+
+  /* Hide tagline on mobile */
+  .fzm-hdr .header-main .offer-text {
+    display: none !important;
+    background: none !important;
+  }
+
+  /* Logo: centered, takes all available middle space, smaller on mobile */
+  .fzm-hdr .header-main .logo-wrap {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: auto !important;
+  }
+
+  .fzm-hdr .logo-wrap a img,
+  .fzm-hdr .logo-wrap img {
+    max-height: 38px !important;
+  }
+
+  /* Right block: auto width, shrinks to icons only */
+  .fzm-hdr .header-main .header-element.right-block {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    align-items: center !important;
+  }
+
+  /* Icons list on mobile */
+  .fzm-hdr .right-block ul.shop-element {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    justify-content: flex-end !important;
+  }
+
+  /* --- HAMBURGER to the FAR LEFT ---
+     Absolute-position the toggle out of the right-block and pin it
+     to the left edge of the header. The logo's left padding offsets
+     so it stays visually centered between the hamburger and icons. */
+  .fzm-hdr .right-block ul.shop-element li.side-wrap.toggle-wrap {
+    position: absolute !important;
+    left: 20px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+    display: flex !important;
+  }
+
+  /* Offset the logo so it doesn't sit under the hamburger */
+  .fzm-hdr .header-main .logo-wrap {
+    padding-left: 44px !important;   /* ≈ hamburger icon width */
+    padding-right: 0 !important;
+  }
+
+  /* Show search icon on mobile */
+  .fzm-hdr .right-block ul.shop-element li.side-wrap.search-wrap {
+    display: flex !important;
+  }
+
+  /* Mobile icon sizes */
+  .fzm-hdr .right-block ul.shop-element li.side-wrap {
+    margin-left: 16px !important;
+  }
+
+  .fzm-hdr .right-block ul.shop-element li.side-wrap:first-child {
+    margin-left: 0 !important;
+  }
+
+}
+
+/* Small mobile (≤480px) */
+@media (max-width: 480px) {
+  .fzm-hdr .header-main {
+    padding: 18px 16px !important;
+  }
+
+  .fzm-hdr .right-block ul.shop-element li.side-wrap.toggle-wrap {
+    left: 16px !important;
+  }
+
+  .fzm-hdr .header-main .logo-wrap {
+    padding-left: 40px !important;
+  }
+
+  .fzm-hdr .logo-wrap a img,
+  .fzm-hdr .logo-wrap img {
+    max-height: 32px !important;
+  }
+}
+
+/* ============================================================
+   MOBILE PANEL COLORS
+   ============================================================ */
+.fzm-hdr .mobile-menu {
+  background-color: #042611 !important;
+}
+
+.fzm-hdr .mobile-menu .main-menu-area {
+  z-index: 800 !important;
+}
+
+.fzm-hdr .mobile-menu .main-navigation {
+  background-color: #042611 !important;
+}
+
+.fzm-hdr .mobile-menu .megamenu-content ul.main-menu li.menu-link {
+  border-top-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.fzm-hdr .mobile-menu .megamenu-content ul.main-menu li.menu-link a.link-title-lg,
+.fzm-hdr .mobile-menu .megamenu-content ul.main-menu li.menu-link a.link-title-lg[aria-expanded="false"] {
+  color: #ffffff !important;
+}
+
+/* Active link in mobile panel — bold + olive left border only, no background */
+.fzm-hdr .mobile-menu .megamenu-content ul.main-menu li.menu-link a.link-title-lg.active {
+  color: #b8d654 !important;
+  font-weight: 700 !important;
+  border-left: 3px solid #7b9844 !important;
+  padding-left: 15px !important;
+}
+
+.fzm-hdr .mobile-menu .megamenu-content ul.main-menu li.menu-link a.link-title-lg[aria-expanded="true"] {
+  color: #b8d654 !important;
+}
+
+.fzm-hdr .mobile-menu .close-box i {
+  color: #ffffff !important;
+}
+
+.fzm-hdr .mobile-menu .offer-text .fzm-tagline-img {
+  max-width: 120px;
+  height: auto;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* ============================================================
+   STICKY STATE
+   The whole header wrapper is already position:sticky, so the
+   nav bar must NOT also go position:fixed — that pulls it out
+   of flow and overlaps the page content on scroll.
+   ============================================================ */
+.fzm-hdr .header-bottom-wrap.is-sticky {
+  position: relative !important;  /* cancel the theme's position:fixed */
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  z-index: auto !important;
+  background-color: #7b9844 !important;
+  box-shadow: none !important;
+}
+
+/* ============================================================
+   LARGE DESKTOP (≥1400px): full Figma margins (119px each side)
+   ============================================================ */
+@media (min-width: 1400px) {
+  .fzm-hdr .header-main {
+    padding: 28px 119px !important;
+  }
+  .fzm-hdr .header-bottom-wrap .menu-rightblock {
+    padding: 18px 119px !important;
+  }
+}

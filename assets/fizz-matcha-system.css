@@ -1,0 +1,528 @@
+/* ============================================================
+   Fizz & Matcha — "A Simple System That Works" Section
+   Figma node 782:99  |  Two-panel: dark-green top + sky bottom
+   ============================================================ */
+
+.fss-section {
+  overflow-x: hidden;   /* kill horizontal scroll from this section */
+  max-width: 100%;
+}
+
+.fss-section *,
+.fss-section *::before,
+.fss-section *::after { box-sizing: border-box; }
+
+/* ============================================================
+   INLINE SVG bullet icon helper
+   ============================================================ */
+.fss-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 23px;
+  display: flex;
+  align-items: center;
+}
+
+/* ============================================================
+   PANEL 1 — Dark Green  #042611  |  1920 × 645 px
+   Left padding 179 px = 9.32 %  |  Right 118 px = 6.15 %
+   Top / Bottom padding 138 px
+   ============================================================ */
+.fss-top {
+  background-color: var(--fss-top-bg, #042611);
+  width: 100%;
+  min-height: 645px;
+}
+
+.fss-top-inner {
+  display: flex;
+  align-items: flex-start;
+  padding: 138px 6.15% 138px 9.32%;
+  min-height: 645px;
+  gap: 0;
+}
+
+/* Left intro column: 632 / 1920 ≈ 32.9 % of viewport */
+.fss-intro {
+  flex: 0 0 48%;
+  padding-right: 6%;
+}
+
+.fss-intro-heading {
+  font-family: 'Lilita One', cursive;
+  font-size: 89px;
+  font-weight: 400;
+  line-height: 0.978;   /* Figma: 87 / 89 */
+  color: var(--fss-h1-color, #7B9844);
+  text-transform: capitalize;
+  margin: 0 0 43px;     /* gap to body text */
+  word-break: break-word;
+}
+
+.fss-intro-body {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fss-body1-size, 19px);
+  font-weight: 400;
+  line-height: 1.63;
+  color: var(--fss-body1-color, #C8CFCB);
+  margin: 0;
+  max-width: 430px;     /* Figma: body text is 427 px wide — narrower than heading */
+  white-space: pre-line;
+}
+
+/* Right lists container: pushed to the right end of the section */
+.fss-lists {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 40px;
+}
+
+/* Shared column styles for "We Provide" and "You Provide" */
+.fss-list-col {}
+
+.fss-list-heading {
+  font-family: 'Lilita One', cursive;
+  font-size: var(--fss-list-h-size, 32px);
+  font-weight: 400;
+  line-height: 1.63;
+  color: var(--fss-list-h-color, #7B9844);
+  margin: 0 0 10px;
+}
+
+/* We Provide items list */
+.fss-list-ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fss-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.fss-list-item:last-child { border-bottom: none; }
+
+/* SVG divider mode — remove CSS borders */
+.fss-list-ul--svg-divider .fss-list-item,
+.fss-list-ul--svg-divider .fss-list-item:last-child {
+  border: none;
+}
+
+.fss-list-divider-item {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  font-size: 0;
+}
+
+.fss-list-divider-item svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.fss-list-text {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fss-list-size, 24px);
+  font-weight: 400;
+  color: var(--fss-list-color, #FFFFFF);
+  line-height: 1;
+}
+
+/* ============================================================
+   PANEL 2 — Sky / Product  |  1920 × 758 px
+   Left text at 154 px (8 %)  |  Product at 657 px (34.2 %)
+   ============================================================ */
+.fss-bottom {
+  width: 100%;
+  min-height: 758px;
+  position: relative;
+  overflow: visible;      /* must stay visible so product bleeds up into dark green */
+  max-width: 100%;
+}
+
+/* Sky / cloud background image */
+.fss-sky-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Three-column flex over the background */
+.fss-bottom-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  min-height: 758px;
+}
+
+/* Left text block: starts at 154 px = 8 %, width 475 px = 24.7 % */
+.fss-left-text {
+  flex: 0 0 24.7%;
+  margin-left: 8%;
+  padding-top: 199px;  /* Figma: heading starts 199 px from section top */
+  padding-bottom: 60px;
+}
+
+.fss-bottom-heading {
+  font-family: 'Lilita One', cursive;
+  font-size: var(--fss-h2-size, 89px);
+  font-weight: 400;
+  line-height: 0.888;   /* Figma: 79 / 89 */
+  color: var(--fss-h2-color, #7B9844);
+  text-transform: capitalize;
+  margin: 0 0 52px;    /* gap to body (400-199-158=43 → ~52 px with line-height diff) */
+  word-break: break-word;
+}
+
+.fss-bottom-body {
+  margin: 0 0 43px;
+}
+
+.fss-bottom-body p,
+.fss-bottom-body li {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fss-body2-size, 19px);
+  font-weight: 300;
+  line-height: 1.63;
+  color: var(--fss-body2-color, #3B5645);
+  margin: 0;
+}
+
+.fss-bottom-body p {
+  margin-bottom: 16px;
+}
+
+.fss-bottom-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fss-bottom-body ul li {
+  padding-left: 22px;
+  position: relative;
+}
+
+.fss-bottom-body ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--fss-body2-color, #3B5645);
+}
+
+/* Button: 200 × 49 px, #7B9844, white uppercase, arrow — single row */
+.fss-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  white-space: nowrap;          /* keep label + arrow on one row */
+  background-color: var(--fss-btn-bg, #7B9844);
+  color: var(--fss-btn-color, #FFFFFF);
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fss-btn-size, 19px);
+  font-weight: 400;
+  text-transform: uppercase;
+  text-decoration: none;
+  width: auto;                  /* let content set the width */
+  min-width: 200px;
+  height: 49px;
+  padding: 0 18px;
+  letter-spacing: 0.02em;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.fss-btn:hover {
+  background-color: var(--fss-btn-hover, #042611);
+  color: #FFFFFF;
+}
+.fss-btn__arrow { flex-shrink: 0; }
+
+/* Product image column:
+   Column stretches the full height of the bottom panel.
+   The IMAGE bleeds 150px into the dark green section above
+   and touches the bottom edge — no cropping. */
+.fss-product {
+  flex: 0 0 36.7%;
+  align-self: stretch;    /* fill full height of flex container */
+  position: relative;
+  z-index: 5;             /* above the dark green panel */
+  overflow: visible;      /* allow image to bleed upward */
+  margin-top: -92px;     /* pull entire column up 150px */
+  padding-right: 60px;    /* add space from right side */
+}
+
+.fss-product-img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 60%;
+  transform: translateX(-50%);
+  width: auto;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;    /* scale to fit without cropping */
+  object-position: center bottom;
+  display: block;
+}
+
+.fss-product-placeholder {
+  position: absolute;
+  top: -150px;
+  inset-inline: 0;
+  bottom: 0;
+  background: rgba(4,38,17,0.08);
+}
+
+/* Right offerings: 359 px = 18.7 %, starts at ~400 px from top */
+.fss-offerings {
+  flex: 0 0 26%;
+  padding-top: 350px;   /* Figma: offerings starts 400 px from section top */
+  padding-bottom: 80px;
+  padding-right: 0%;
+  padding-left: 80px;   /* add space between bottle and offerings */
+  text-align: right;
+}
+
+.fss-offerings-heading {
+  font-family: 'Lilita One', cursive;
+  font-size: var(--fss-list-h-size, 32px);
+  font-weight: 400;
+  line-height: 1.63;
+  color: var(--fss-off-h-color, #042611);
+  text-align: right;
+  margin: 0 0 35px;
+}
+
+/* Offerings SVG divider mode */
+.fss-offerings-ul--svg-divider .fss-offerings-item,
+.fss-offerings-ul--svg-divider .fss-offerings-item:last-child {
+  border: none;
+}
+
+.fss-offerings-divider-item {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  font-size: 0;
+}
+
+.fss-offerings-divider-item svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Offerings list: right-aligned, dark dividers, no bullet icons */
+.fss-offerings-ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+
+.fss-offerings-item {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-bottom: 1px solid rgba(4, 38, 17, 0.2);
+}
+
+.fss-offerings-item:last-child { border-bottom: none; }
+
+.fss-offerings-text {
+  font-family: 'Inter', sans-serif;
+  font-size: var(--fss-list-size, 24px);
+  font-weight: 400;
+  color: var(--fss-off-color, #042611);
+  line-height: 1;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* 1200–1499 px */
+@media (max-width: 1499px) {
+  .fss-top-inner { padding: 110px 5% 110px 7%; }
+  .fss-intro-heading, .fss-bottom-heading { font-size: 72px; }
+  .fss-list-heading, .fss-offerings-heading { font-size: 28px; }
+  .fss-list-text, .fss-offerings-text { font-size: 20px; }
+  .fss-bottom { min-height: 640px; }
+  .fss-bottom-inner { min-height: 640px; }
+  .fss-left-text { padding-top: 160px; }
+  .fss-offerings { padding-top: 330px; padding-left: 40px; }
+  .fss-product {
+    z-index: 5;
+    overflow: visible;
+    margin-top: -120px;
+    padding-right: 50px;
+  }
+  .fss-product-img {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: 100%;
+    max-width: none;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+}
+
+/* 1024–1199 px — BOTH panels stay ONE ROW (desktop-like) */
+@media (max-width: 1199px) {
+  /* ─ Dark green panel ─ */
+  .fss-top { min-height: unset; }
+  .fss-top-inner {
+    padding: 72px 4% 72px 5%;
+    gap: 20px;
+    min-height: unset;
+  }
+  .fss-intro { flex: 0 0 42%; padding-right: 2%; }
+  .fss-intro-heading { font-size: 52px; margin-bottom: 18px; }
+  .fss-lists { flex: 1; justify-content: flex-end; gap: 24px; }
+  .fss-list-heading { font-size: 22px; margin-bottom: 14px; }
+  .fss-list-text, .fss-offerings-text { font-size: 16px; }
+  .fss-list-item { min-height: 48px; }
+
+  /* ─ Sky / product panel — keep 3-column row ─ */
+  .fss-bottom { min-height: 580px; }
+  .fss-bottom-inner { min-height: 580px; }
+  .fss-left-text {
+    flex: 0 0 24.7%;
+    margin-left: 5%;
+    padding-top: 100px;
+    padding-bottom: 60px;
+  }
+  .fss-bottom-heading { font-size: 50px; margin-bottom: 22px; }
+  .fss-bottom-body { margin-bottom: 32px; }
+  .fss-bottom-body p, .fss-bottom-body li { font-size: 16px; }
+  .fss-product {
+    flex: 0 0 38%;
+    align-self: stretch;
+    overflow: visible;
+    z-index: 5;
+    margin-top: -100px;
+    padding-right: 40px;
+  }
+  .fss-product-img {
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: none;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+  .fss-offerings {
+    flex: 0 0 18.7%;
+    padding-top: 180px;
+    padding-bottom: 60px;
+    padding-right: 5%;
+    padding-left: 30px;
+    text-align: right;
+  }
+  .fss-offerings-heading { text-align: right; font-size: 22px; }
+  .fss-offerings-ul, .fss-offerings-item { text-align: right; justify-content: flex-end; }
+  .fss-offerings-item { min-height: 48px; }
+}
+
+/* ≤ 1023 px — BOTH panels wrap to columns */
+@media (max-width: 1023px) {
+  /* Dark green */
+  .fss-top-inner {
+    padding: 80px 5% 80px 5%;
+    flex-wrap: wrap;
+    gap: 48px;
+  }
+  .fss-intro { flex: 0 0 100%; padding-right: 0; }
+  .fss-intro-heading { font-size: 52px; margin-bottom: 24px; }
+  .fss-lists { flex: 0 0 100%; justify-content: flex-start; gap: 40px; }
+  .fss-list-heading { font-size: 24px; margin-bottom: 18px; }
+  .fss-list-text { font-size: 17px; }
+
+  /* Sky / product */
+  .fss-bottom { min-height: unset; }
+  .fss-bottom-inner {
+    flex-wrap: wrap;
+    min-height: unset;
+    padding: 60px 5%;
+    gap: 40px;
+  }
+  .fss-left-text {
+    flex: 0 0 100%;
+    margin-left: 0;
+    padding-top: 0;
+    order: 1;
+  }
+  .fss-bottom-heading { font-size: 52px; margin-bottom: 24px; }
+  .fss-product {
+    flex: 0 0 100%;
+    height: 420px;
+    align-self: auto;
+    overflow: hidden;
+    order: 0;
+    padding-right: 0;
+  }
+  .fss-product-img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+  .fss-offerings {
+    flex: 0 0 100%;
+    padding-top: 0;
+    padding-right: 0;
+    padding-left: 0;
+    text-align: left;
+    order: 2;
+  }
+  .fss-offerings-heading { text-align: left; font-size: 24px; }
+  .fss-offerings-ul, .fss-offerings-item { text-align: left; justify-content: flex-start; }
+}
+
+/* Mobile ≤ 767 px */
+@media (max-width: 767px) {
+  .fss-top-inner { padding: 56px 5%; gap: 40px; }
+  .fss-intro-heading, .fss-bottom-heading { font-size: 44px; }
+  .fss-intro-body, .fss-bottom-body p, .fss-bottom-body li { font-size: 16px; }
+  .fss-lists { gap: 32px; }
+  .fss-list-heading, .fss-offerings-heading { font-size: 24px; margin-bottom: 16px; }
+  .fss-list-text, .fss-offerings-text { font-size: 16px; }
+  .fss-list-item, .fss-offerings-item { min-height: 46px; }
+  .fss-product { height: 300px; }
+  .fss-btn { font-size: 16px; width: 180px; height: 44px; }
+}
+
+/* Small mobile ≤ 479 px */
+@media (max-width: 479px) {
+  .fss-intro-heading, .fss-bottom-heading { font-size: 36px; }
+  .fss-lists { flex-direction: column; gap: 32px; }
+  .fss-product { height: 240px; }
+}

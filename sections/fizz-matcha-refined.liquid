@@ -1,0 +1,245 @@
+{{ 'fizz-matcha-refined.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign bg_color    = section.settings.bg_color
+  assign h_color     = section.settings.heading_color
+  assign h_size      = section.settings.heading_size
+  assign body_color  = section.settings.body_color
+  assign body_size   = section.settings.body_size
+  assign item_size   = section.settings.item_size
+  assign speed       = section.settings.marquee_speed
+-%}
+
+{%- comment -%}===== WHITE MATCHA LEAF ICON (Figma node 718:450 — white fill) ====={%- endcomment -%}
+{%- capture white_leaf -%}
+<svg width="28" height="23" viewBox="0 0 28 23" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M3.51579 12.1068C3.06263 13.5613 3.02427 15.0981 3.10819 16.6619C3.27203 18.8552 3.79952 20.9387 4.59475 22.9998C4.40053 22.9944 4.09123 22.9737 3.93059 22.8407C2.74934 21.8627 1.78228 20.708 1.04779 19.3972C0.022387 17.5652 -0.250148 15.5632 0.229386 13.5452C0.588237 12.0353 0.968668 10.5961 1.4466 9.11538L2.66462 4.98542C3.06423 3.34558 3.28402 1.75341 3.29361 -0.000976562C5.2629 2.51605 6.96524 5.36059 7.89634 8.36273C8.2488 9.49977 8.40384 10.6199 8.37188 11.8146C8.27757 15.3449 7.08033 19.3434 5.83194 22.67C5.7696 22.836 5.69528 22.9321 5.51705 22.9329C4.65948 20.8295 4.01371 18.7084 3.66125 16.4789C3.41669 15.0174 3.39032 13.6405 3.51499 12.106Z" fill="#FFFFFF"/>
+  <path d="M10.0699 18.7087C9.03567 19.775 8.01027 20.7253 6.81543 21.6224C7.39167 20.011 7.88479 18.4589 8.16612 16.7967C8.77353 15.4875 9.56716 14.332 10.5878 13.3018C11.4086 12.4469 12.3509 11.8295 13.413 11.2829C14.8332 10.5526 16.1871 9.80608 17.553 8.99039C18.3378 8.5222 19.0412 8.02479 19.7653 7.48586L20.7707 6.54102C19.5966 10.8516 17.4475 15.0962 14.2714 18.2828C12.2845 20.2763 9.94119 21.8538 7.17668 22.7149C8.13175 21.8792 8.97653 21.0389 9.78375 20.071C11.3334 18.2121 12.7465 16.2916 14.0348 14.2305C12.7185 15.7581 11.5061 17.2641 10.0683 18.7087Z" fill="#FFFFFF"/>
+  <path d="M11.172 21.4427C12.2622 20.9076 13.1597 20.2241 14.0197 19.4169C15.4639 18.8257 16.8345 18.1945 18.206 17.4603C19.0484 16.9529 19.9043 16.5208 20.6205 15.8374C18.8598 16.8199 17.1135 17.6909 15.1458 18.2391C16.3358 16.8038 17.3061 15.3438 18.2595 13.8108C19.898 13.8624 21.4445 13.5733 22.9534 13.0244C24.8076 12.3455 26.442 11.3638 28.0005 10.1406C26.5867 13.5495 23.1876 16.6869 20.1018 18.7603C16.7122 21.0375 12.1295 22.4113 8.00391 22.9995Z" fill="rgba(255,255,255,0.75)"/>
+</svg>
+{%- endcapture -%}
+
+<section
+  class="fmr-section"
+  id="fmr-{{ section.id }}"
+  style="
+    --fmr-bg: {{ bg_color }};
+    --fmr-h-color: {{ h_color }};
+    --fmr-h-size: {{ h_size }}px;
+    --fmr-body-color: {{ body_color }};
+    --fmr-body-size: {{ body_size }}px;
+    --fmr-item-size: {{ item_size }}px;
+    --fmr-speed: {{ speed }}s;
+  "
+  data-section-id="{{ section.id }}"
+>
+
+  {%- comment -%}===== HEADING + BODY ====={%- endcomment -%}
+  <div class="fmr-content">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="fmr-heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.body_text != blank -%}
+      <p class="fmr-body">{{ section.settings.body_text }}</p>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%}===== MARQUEE BAR ====={%- endcomment -%}
+  {%- if section.blocks.size > 0 -%}
+    <div class="fmr-marquee-wrap" aria-label="Marquee" aria-hidden="true">
+      <div class="fmr-track">
+
+        {%- comment -%} Set 1 {%- endcomment -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'marquee_item' -%}
+            <div class="fmr-item{% if forloop.first %} fmr-item--nodivider{% endif %}" {{ block.shopify_attributes }}>
+              {%- unless forloop.first -%}
+                <span class="fmr-divider">
+                  {%- if section.settings.divider_image != blank -%}
+                    <img src="{{ section.settings.divider_image | image_url: height: 56 }}" alt="" loading="lazy">
+                  {%- else -%}
+                    <span class="fmr-divider--line"></span>
+                  {%- endif -%}
+                </span>
+              {%- endunless -%}
+              {%- if block.settings.show_icon -%}
+                <span class="fmr-leaf">
+                  {%- if section.settings.leaf_icon != blank -%}
+                    <img src="{{ section.settings.leaf_icon | image_url: width: 56 }}" alt="" loading="lazy">
+                  {%- else -%}
+                    {{ white_leaf }}
+                  {%- endif -%}
+                </span>
+              {%- endif -%}
+              <span class="fmr-item-text">{{ block.settings.text }}</span>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- comment -%} Set 2 — duplicate for seamless loop {%- endcomment -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'marquee_item' -%}
+            <div class="fmr-item" aria-hidden="true">
+              <span class="fmr-divider">
+                {%- if section.settings.divider_image != blank -%}
+                  <img src="{{ section.settings.divider_image | image_url: height: 56 }}" alt="" loading="lazy">
+                {%- else -%}
+                  <span class="fmr-divider--line"></span>
+                {%- endif -%}
+              </span>
+              {%- if block.settings.show_icon -%}
+                <span class="fmr-leaf">
+                  {%- if section.settings.leaf_icon != blank -%}
+                    <img src="{{ section.settings.leaf_icon | image_url: width: 56 }}" alt="" loading="lazy">
+                  {%- else -%}
+                    {{ white_leaf }}
+                  {%- endif -%}
+                </span>
+              {%- endif -%}
+              <span class="fmr-item-text">{{ block.settings.text }}</span>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+
+      </div>
+    </div>
+  {%- endif -%}
+
+</section>
+
+{% schema %}
+{
+  "name": "Fizz Matcha Refined",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#7B9844"
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Matcha, Refined."
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 40,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "header",
+      "content": "Body Text"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body Text",
+      "default": "We’re not just another supplier—we’re an established matcha brand with proven demand and operational experience."
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body Text Color",
+      "default": "rgba(255,255,255,0.7)",
+      "info": "Use rgba for opacity e.g. rgba(255,255,255,0.7)"
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body Font Size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    },
+    {
+      "type": "header",
+      "content": "Marquee"
+    },
+    {
+      "type": "image_picker",
+      "id": "leaf_icon",
+      "label": "Custom Leaf Icon (PNG)",
+      "info": "Replaces the default SVG icon. Recommended: 56 × 56 px transparent PNG"
+    },
+    {
+      "type": "image_picker",
+      "id": "divider_image",
+      "label": "Custom Divider Image (PNG)",
+      "info": "Vertical divider between marquee items. Recommended: 2 × 56 px transparent PNG"
+    },
+    {
+      "type": "range",
+      "id": "item_size",
+      "label": "Marquee Item Font Size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed",
+      "label": "Scroll Speed (seconds for one loop)",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "marquee_item",
+      "name": "Marquee Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Item Text",
+          "default": "40,000+ customers served"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Show Leaf Icon",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fizz Matcha Refined",
+      "blocks": [
+        { "type": "marquee_item", "settings": { "text": "40,000+ customers served", "show_icon": true } },
+        { "type": "marquee_item", "settings": { "text": "Active presence across South Florida", "show_icon": true } },
+        { "type": "marquee_item", "settings": { "text": "Premium event and wellness partnerships", "show_icon": true } },
+        { "type": "marquee_item", "settings": { "text": "Proven systems and refined recipes", "show_icon": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}
