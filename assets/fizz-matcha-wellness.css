@@ -171,3 +171,6 @@
   .fmwl-overline { font-size: 15px; }
   .fmwl-btn { max-width: 100%; font-size: 14px; }
 }
+.fmwl-btn:hover .fmwl-btn__arrow svg path {
+  stroke: var(--fmwl-btn-hover-text, #FFFFFF);
+}

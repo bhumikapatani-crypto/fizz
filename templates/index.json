@@ -1,0 +1,706 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow": {
+      "type": "slideshow",
+      "blocks": {
+        "image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/HBK_desktop_banner_optimized_WEBP_aa6f70ec-4ca0-4d3a-bfa5-6c254aa04da3.webp",
+            "mobile_image": "shopify://shop_images/HBK_mobile_banner_optimized_WEBP_79bc8745-bb59-4ce9-83b3-c812a5426788.webp",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "middle_center",
+            "button_background": "#00badb",
+            "button_text_color": "#ffffff",
+            "button_text": "",
+            "link": ""
+          }
+        },
+        "image-2": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "New Portable Speakers",
+            "content": "Discover the brand new speakers.",
+            "content_position": "middle_right",
+            "button_background": "#00badb",
+            "button_text_color": "#ffffff",
+            "button_text": "Shop now",
+            "link": "shopify://collections/all"
+          }
+        },
+        "image-3": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "Introducing brand new OLED TVs",
+            "content": "Discover all the masterpieces, selected by our team",
+            "content_position": "middle_left",
+            "button_background": "#00badb",
+            "button_text_color": "#ffffff",
+            "button_text": "Shop now",
+            "link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "image-1",
+        "image-2",
+        "image-3"
+      ],
+      "settings": {
+        "edge_to_edge": true,
+        "section_size": "preserve_ratio",
+        "carousel_effect": "slide",
+        "autoplay": true,
+        "cycle_speed": 5
+      }
+    },
+    "promotion-list": {
+      "type": "promotion-list",
+      "blocks": {
+        "item-1": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Untitled-1-Recovered_123-1.webp",
+            "stretch_image": true,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "background": "#fc2a68",
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "top_left",
+            "button_background": "#ffffff",
+            "button_text_color": "#fc2a68",
+            "button_text": "",
+            "button_link": ""
+          }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Untitled-2-Recovered.webp",
+            "stretch_image": true,
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "background": "#6f42ef",
+            "text_color": "#ffffff",
+            "title": "",
+            "content": "",
+            "content_position": "top_left",
+            "button_background": "#ffffff",
+            "button_text_color": "#6f42ef",
+            "button_text": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "item-1",
+        "item-2"
+      ],
+      "name": "Promotion blocks",
+      "settings": {
+        "expand_items": true,
+        "section_size": "small",
+        "stack_mobile": false
+      }
+    },
+    "rich_text_nnwYz4": {
+      "type": "rich-text",
+      "name": "Rich text",
+      "settings": {
+        "text_width": "regular",
+        "title": "",
+        "content": "<h1>Wholesale Hair and Beauty Supplies in Australia & New Zealand</h1><p>Professional stylists, hairdressers, barbers, beauty therapists, or someone simply passionate about self-care – our extensive collection of premium wholesale hair and beauty supplies available online and in-store offers everything you need to give your clients the very best, every time.</p><p>Serving both Australia and New Zealand, we’ve become a trusted partner for supplies fo salons, spas, barbershops, and beauty enthusiasts seeking quality, convenience, and creativity. We are committed to offering only the best brands and reliable equipment, accessories and essentials, so your business stands out from the rest.</p><p>Explore thousands of professional beauty and hair products online with Hair & Beauty Kingdom today.</p>",
+        "button_text": "Shop Now",
+        "button_link": "shopify://collections/all"
+      }
+    },
+    "rich_text_nNKacC": {
+      "type": "rich-text",
+      "name": "Rich text",
+      "settings": {
+        "text_width": "narrow",
+        "title": "",
+        "content": "<h2>Explore Hair and Beauty Products Online Across AU & NZ</h2>",
+        "button_text": "",
+        "button_link": "shopify://collections/all"
+      }
+    },
+    "mosaic": {
+      "type": "mosaic",
+      "blocks": {
+        "item-1": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/barber_tile_optimized.webp",
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "background": "#f3f4f4",
+            "text_color": "rgba(0,0,0,0)",
+            "title": "BARBER",
+            "content": "Stay sharp with the best barber products Australia and New Zealand have to offer, designed specifically for grooming professionals, including precise clippers, classic straight razors, and luxurious beard-care essentials.",
+            "content_position": "bottom_center",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "button_text": "BARBER",
+            "link": "shopify://collections/barber"
+          }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/salon-2_89fbd1c4-4987-4d26-930f-88385e2d06dc.jpg",
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "background": "#f3f4f4",
+            "text_color": "rgba(0,0,0,0)",
+            "title": "HAIR",
+            "content": "Revitalise your hair routine with our carefully selected range of high-quality hair products online. From nourishing shampoos and conditioners to cutting-edge styling tools and treatments, we stock premium hair care products from trusted brands across Australia and New Zealand.",
+            "content_position": "bottom_center",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "button_text": "HAIR",
+            "link": "shopify://collections/hair"
+          }
+        },
+        "item-3": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Beauty_image_d869ced1-4b5d-474b-8fc8-e937f254050f.png",
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "background": "#f3f4f4",
+            "text_color": "rgba(0,0,0,0)",
+            "title": "BEAUTY",
+            "content": "Enhance natural beauty with our extensive collection of professional beauty supplies. Discover luxurious skincare essentials, vibrant makeup palettes, and indulgent spa-quality treatments suitable for every skin type.",
+            "content_position": "bottom_center",
+            "button_background": "#000000",
+            "button_text_color": "#f3f4f4",
+            "button_text": "BEAUTY",
+            "link": "shopify://collections/beauty"
+          }
+        },
+        "item-4": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Salon_essentials_photo_fcf014cb-0838-4b37-90d0-1c12d0150c39.jpg",
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "background": "#f3f4f4",
+            "text_color": "rgba(0,0,0,0)",
+            "title": "SALON ESSENTIALS",
+            "content": "Equip your salon with the reliable, professional-grade essentials every stylist depends on. Our collection includes high-performance hair accessories, quality hair and beauty supplies, and industry-leading products trusted by top salons in Australia and New Zealand.",
+            "content_position": "bottom_center",
+            "button_background": "#000000",
+            "button_text_color": "#ffffff",
+            "button_text": "SALON ESSENTIALS",
+            "link": "shopify://collections/salon-essentials"
+          }
+        },
+        "item-5": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Karma_Paddington_Barber_Chair_Black_Black_04100101_dde3ae6b-5a45-4240-866c-bb2501915130.jpg",
+            "show_overlay": false,
+            "overlay_opacity": 50,
+            "background": "#f3f4f4",
+            "text_color": "rgba(0,0,0,0)",
+            "title": "SALON FURNITURE",
+            "content": "Transform your salon into a stylish haven with our premium salon furniture collection. From comfortable chairs and portable hair basins to versatile styling stations, Hair & Beauty Kingdom offers furniture solutions that perfectly blend aesthetics with functionality.",
+            "content_position": "bottom_center",
+            "button_background": "#000000",
+            "button_text_color": "#f3f4f4",
+            "button_text": "SALON FURNITURE",
+            "link": "shopify://collections/salon-furniture"
+          }
+        }
+      },
+      "block_order": [
+        "item-1",
+        "item-2",
+        "item-3",
+        "item-4",
+        "item-5"
+      ],
+      "name": "Mosaic",
+      "settings": {
+        "section_size": "medium"
+      }
+    },
+    "offers": {
+      "type": "offers",
+      "blocks": {
+        "offer-1": {
+          "type": "offer",
+          "settings": {
+            "image": "shopify://shop_images/Untitled-1-Recovered_d3b3d00f-e9bb-4c3e-9b1a-f867074288f8.jpg",
+            "title": "Exclusive offers",
+            "content": "<p>Enjoy great discounts on a wide range of portable speakers, including compact clip-on models, versatile flip-style speakers, and smart voice-controlled options!</p>"
+          }
+        },
+        "offer-2": {
+          "type": "offer",
+          "settings": {
+            "title": "Free shipping for all orders",
+            "content": "<p>We got you cover  ! We deliver your goods using UPS expedited shipping, free of charge</p>"
+          }
+        }
+      },
+      "block_order": [
+        "offer-1",
+        "offer-2"
+      ],
+      "disabled": true,
+      "name": "Offers",
+      "settings": {
+        "items_per_row": 2,
+        "stack_mobile": false
+      }
+    },
+    "collection-list": {
+      "type": "collection-list",
+      "blocks": {
+        "collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "link": ""
+          }
+        },
+        "collection-2": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "link": ""
+          }
+        },
+        "collection-3": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "link": ""
+          }
+        },
+        "collection-4": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "link": ""
+          }
+        },
+        "collection-5": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "link": ""
+          }
+        },
+        "collection-6": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection-1",
+        "collection-2",
+        "collection-3",
+        "collection-4",
+        "collection-5",
+        "collection-6"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "New Products",
+        "link_title": "View all",
+        "link": "shopify://collections/new-products",
+        "round_images": false,
+        "show_collection_title": false
+      }
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "new-products",
+        "title": "New Products",
+        "products_count": 48,
+        "layout": "vertical",
+        "stack_products": false,
+        "show_quick_buy": true,
+        "link_title": "View all",
+        "link_url": ""
+      }
+    },
+    "featured-collection-1": {
+      "type": "featured-collection",
+      "name": "Featured collection",
+      "settings": {
+        "collection": "featured",
+        "title": "Featured Products:",
+        "products_count": 9,
+        "layout": "horizontal",
+        "stack_products": false,
+        "show_quick_buy": false,
+        "link_title": "View all",
+        "link_url": ""
+      }
+    },
+    "logo-list": {
+      "type": "logo-list",
+      "blocks": {
+        "logo-1": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Cree.jpg",
+            "link": "shopify://collections/cree"
+          }
+        },
+        "logo-2": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Immortal.jpg",
+            "link": ""
+          }
+        },
+        "logo-3": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Karma.jpg",
+            "link": ""
+          }
+        },
+        "logo-4": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Marmara_Barber.jpg",
+            "link": ""
+          }
+        },
+        "logo-5": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Gummy.jpg",
+            "link": ""
+          }
+        },
+        "logo-6": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Caliber.jpg",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo-1",
+        "logo-2",
+        "logo-3",
+        "logo-4",
+        "logo-5",
+        "logo-6"
+      ],
+      "name": "Logo list",
+      "settings": {
+        "title": "Brands we distribute",
+        "link_title": "",
+        "link": ""
+      }
+    },
+    "collection-with-image": {
+      "type": "collection-with-image",
+      "name": "Collection with image",
+      "settings": {
+        "collection": "reviewed-items",
+        "products_count": 12,
+        "show_quick_buy": false,
+        "background": "#d81282",
+        "text_color": "#ffffff",
+        "title": "Shop Reviewed Products",
+        "content": "Shop with confidence from our carefully selected range of products, all tried, tested, and trusted by verified customers.",
+        "button_background": "#ffffff",
+        "button_text_color": "#2d2d2d",
+        "button_text": "",
+        "button_link": ""
+      }
+    },
+    "featured-product": {
+      "type": "featured-product",
+      "blocks": {
+        "product-meta-1": {
+          "type": "product_meta",
+          "settings": {
+            "show_vendor": true,
+            "show_sku": false,
+            "show_reviews_badge": false,
+            "show_share_buttons": true
+          }
+        },
+        "featured-description-1": {
+          "type": "featured_description",
+          "settings": {}
+        },
+        "variant-selector-1": {
+          "type": "variant_selector",
+          "settings": {
+            "selector_mode": "block",
+            "color_mode": "swatch",
+            "variant_image_options": "",
+            "show_quantity_selector": true,
+            "show_taxes_included": false,
+            "show_inventory_quantity": false,
+            "low_inventory_threshold": 0,
+            "progress_bar_max_value": 50
+          }
+        },
+        "buy-buttons-1": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true
+          }
+        }
+      },
+      "block_order": [
+        "product-meta-1",
+        "featured-description-1",
+        "variant-selector-1",
+        "buy-buttons-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "product": "",
+        "title": "Featured product",
+        "link_title": "View details",
+        "link_url": "",
+        "image_size": "small",
+        "enable_image_zoom": true,
+        "enable_video_looping": false,
+        "zoom_effect": "outside",
+        "carousel_effect": "fade"
+      }
+    },
+    "blog-posts": {
+      "type": "blog-posts",
+      "settings": {
+        "blog": "blog-post",
+        "blog_posts_count": 3,
+        "title": "Blog posts",
+        "link_title": "View all",
+        "show_category": false,
+        "show_author": false,
+        "show_date": true,
+        "show_excerpt": false,
+        "stack_mobile": false
+      }
+    },
+    "rich-text": {
+      "type": "rich-text",
+      "name": "Rich text",
+      "settings": {
+        "text_width": "regular",
+        "title": "",
+        "content": "<h2>Why Shop for Your Barber and Salon Supplies with Hair & Beauty Kingdom?</h2><p>Founded in 2014, we are Australia's premier wholesaler of products and equipment for the hair and beauty supplies industry. We are recognised as a reliable stocking point because we supply the right brands, the finest products and a prompt and efficient  elivery service. Our warehouse features over 600 square feet of space, with more than 12,000 individually coded items on its shelves. </p><p>We believe that the industry requires high-quality products to support their line of work, so we pride ourselves on fulfilling this need every day. Working closely with you to ensure your demands are met, we continue to bridge the gap<br/>for affordable hair and beauty supplies and accessories online, without sacrificing quality.</p>",
+        "button_text": "",
+        "button_link": "shopify://collections/all"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "disabled": true,
+      "settings": {
+        "title": "Let's keep in touch",
+        "content": "<p>Subscribe to our weekly newsletter and receive exclusive offers on products you love!</p>",
+        "background": "rgba(0,0,0,0)",
+        "text": "#677279"
+      }
+    },
+    "quick-links": {
+      "type": "quick-links",
+      "blocks": {
+        "link-1": {
+          "type": "link",
+          "settings": {
+            "title": "Headphones",
+            "link": ""
+          }
+        },
+        "link-2": {
+          "type": "link",
+          "settings": {
+            "title": "Speakers",
+            "link": ""
+          }
+        },
+        "link-3": {
+          "type": "link",
+          "settings": {
+            "title": "TVs",
+            "link": ""
+          }
+        },
+        "link-4": {
+          "type": "link",
+          "settings": {
+            "title": "Turntables",
+            "link": ""
+          }
+        },
+        "link-5": {
+          "type": "link",
+          "settings": {
+            "title": "Subwoofers",
+            "link": ""
+          }
+        },
+        "link-6": {
+          "type": "link",
+          "settings": {
+            "title": "Projectors",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "link-1",
+        "link-2",
+        "link-3",
+        "link-4",
+        "link-5",
+        "link-6"
+      ],
+      "disabled": true,
+      "name": "Quick links",
+      "settings": {
+        "title": "Quick links",
+        "expand_items": true,
+        "show_desktop": true,
+        "link_title": "",
+        "link": ""
+      }
+    },
+    "slideshow_hArRmP": {
+      "type": "slideshow",
+      "blocks": {
+        "image_AAnAFT": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/testimonial2_502bc010-74cc-4a74-8e75-1decad918626.png",
+            "mobile_image": "shopify://shop_images/testimonial1_00270689-6548-4b50-b99e-0362fedfa734.png",
+            "show_overlay": true,
+            "overlay_opacity": 85,
+            "text_color": "#ffffff",
+            "title": "Great service, great products with great prices! Will definitely come again",
+            "content": "Leesa Nassar",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "Button",
+            "link": ""
+          }
+        },
+        "image_wEjLbk": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/testimonial2_502bc010-74cc-4a74-8e75-1decad918626.png",
+            "mobile_image": "shopify://shop_images/testimonial1_00270689-6548-4b50-b99e-0362fedfa734.png",
+            "show_overlay": true,
+            "overlay_opacity": 85,
+            "text_color": "#ffffff",
+            "title": "Thank you for great service got exactly what I wanted and good advice and great prices... My new go to hair store.",
+            "content": "Dina Ghamrawi",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "Button",
+            "link": ""
+          }
+        },
+        "image_Dr9JH9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/testimonial2_502bc010-74cc-4a74-8e75-1decad918626.png",
+            "mobile_image": "shopify://shop_images/testimonial1_00270689-6548-4b50-b99e-0362fedfa734.png",
+            "show_overlay": false,
+            "overlay_opacity": 30,
+            "text_color": "#ffffff",
+            "title": "Great staff excellent service, always there to help",
+            "content": "Linda Jeaitani",
+            "content_position": "middle_center",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "button_text": "Button",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_AAnAFT",
+        "image_wEjLbk",
+        "image_Dr9JH9"
+      ],
+      "name": "Slideshow",
+      "settings": {
+        "edge_to_edge": false,
+        "section_size": "preserve_ratio",
+        "carousel_effect": "slide",
+        "autoplay": true,
+        "cycle_speed": 5
+      }
+    },
+    "rich_text_4aPhtY": {
+      "type": "rich-text",
+      "name": "Rich text",
+      "settings": {
+        "text_width": "regular",
+        "title": "",
+        "content": "<h2>Discover Massive Savings on Hair and Beauty Supplies When You Buy Online in AU or NZ</h2><p>With a commitment to accessibility, we ensure the convenience of easy online<br/>purchasing and unconditional trade prices, making an affordable range of stock available across Australia and New Zealand. Whether you own a busy salon or are a home hairdresser, we welcome you to purchase online or in-person at our warehouse showroom, where you can buy <a href=\"https://hairandbeautykingdom.com.au/collections/salon-furniture\">salon furniture</a>, <a href=\"https://hairandbeautykingdom.com.au/collections/hair-straightening-keratin-straightening-and-perming\">straighteners</a>, <a href=\"https://hairandbeautykingdom.com.au/collections/clipper-and-trimmer-accessories\">trimmers</a>, <a href=\"https://hairandbeautykingdom.com.au/collections/lashes-brows-accessories\">lashes</a> and experience exceptional customer service.</p><p>Are you ready to make a wholesale account with us? We look forward to supplying you with practical and affordable items that are ideal for your shop. <a href=\"https://hairandbeautykingdom.com.au/apps/wpdapp\">Fill out a registration form</a> and enjoy the many benefits of becoming a regular purchaser at our store.</p>",
+        "button_text": "Contact Us",
+        "button_link": "shopify://pages/contact-us"
+      }
+    }
+  },
+  "order": [
+    "slideshow",
+    "promotion-list",
+    "rich_text_nnwYz4",
+    "rich_text_nNKacC",
+    "mosaic",
+    "offers",
+    "collection-list",
+    "featured-collection",
+    "featured-collection-1",
+    "logo-list",
+    "collection-with-image",
+    "featured-product",
+    "blog-posts",
+    "rich-text",
+    "newsletter",
+    "quick-links",
+    "slideshow_hArRmP",
+    "rich_text_4aPhtY"
+  ]
+}
